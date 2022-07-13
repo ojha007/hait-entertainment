@@ -1,0 +1,23 @@
+.our-partners {
+  @include defaultPaddingLayout();
+
+  .services-heading {
+    @include sec-heading();
+  }
+
+  .our-partners-slick-container {
+    .img-container {
+      height: 8rem;
+      width: 100%;
+      overflow: hidden;
+      object-fit: cover;
+      padding-right: 1rem;
+      border-radius: 0.25rem;
+
+      img {
+        height: 100%;
+        width: 100%;
+      }
+    }
+  }
+}

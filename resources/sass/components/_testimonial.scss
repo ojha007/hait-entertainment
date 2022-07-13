@@ -1,0 +1,46 @@
+.testimonial {
+  @include defaultPaddingLayout();
+
+  .services-heading {
+    @include sec-heading();
+  }
+
+  .carousel {
+    .carousel-inner {
+      .carousel-item {
+        .testimonial-content {
+          display: flex;
+          align-items: center;
+          width: 80%;
+          margin-left: auto;
+          margin-right: auto;
+          flex-direction: column;
+          text-align: center;
+
+          .img-container {
+            height: 7rem;
+            width: 7rem;
+            background: white;
+            border-radius: 50%;
+            overflow: hidden;
+
+            img {
+              height: 100%;
+            }
+          }
+
+          p {
+            margin-top: 1rem;
+          }
+
+          p.name {
+            margin-top: 1rem;
+            font-weight: bold;
+          }
+
+        }
+      }
+    }
+  }
+
+}

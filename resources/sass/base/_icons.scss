@@ -1,0 +1,78 @@
+@font-face {
+  font-family: 'icomoon';
+  src:  url('./fonts/icomoon.eot?94d3qg');
+  src:  url('./fonts/icomoon.eot?94d3qg#iefix') format('embedded-opentype'),
+  url('./fonts/icomoon.ttf?94d3qg') format('truetype'),
+  url('./fonts/icomoon.woff?94d3qg') format('woff'),
+  url('./fonts/icomoon.svg?94d3qg#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="ic-"], [class*=" ic-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.ic-mail:before {
+  content: "\e907";
+}
+.ic-caret-right:before {
+  content: "\e905";
+}
+.ic-caret-left:before {
+  content: "\e908";
+}
+.ic-cancel:before {
+  content: "\e901";
+}
+.ic-envelope:before {
+  content: "\e902";
+}
+.ic-facebook:before {
+  content: "\e903";
+}
+.ic-home:before {
+  content: "\e904";
+}
+.ic-marker:before {
+  content: "\e906";
+}
+.ic-chevron-right:before {
+  content: "\e900";
+}
+.ic-phone:before {
+  content: "\e942";
+}
+.ic-ctrl:before {
+  content: "\ea50";
+}
+.ic-instagram:before {
+  content: "\ea92";
+}
+.ic-checkmark:before {
+  content: "\e909";
+}
+.ic-clock:before {
+  content: "\e94e";
+}
+.ic-user:before {
+  content: "\e971";
+}
+.ic-search:before {
+  content: "\e986";
+}
+.ic-share:before {
+  content: "\ea82";
+}

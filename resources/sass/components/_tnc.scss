@@ -1,0 +1,27 @@
+.terms-main {
+  @include defaultPaddingLayout();
+
+  .container {
+    max-width: 800px;
+
+    .heading-main, .subheading-main {
+      color: $primary;
+      margin-bottom: 1rem;
+    }
+
+    .subheading-main {
+      font-style: italic;
+    }
+
+    .text {
+      margin-top: 2rem;
+
+      h6 {
+        margin-top: 1.5rem;
+        font-size: 1.15rem;
+        color: $primary;
+        margin-bottom: .25rem;
+      }
+    }
+  }
+}

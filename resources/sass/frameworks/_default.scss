@@ -1,0 +1,40 @@
+$utilities: map-merge(
+  $utilities,
+  (
+    "margin-start":
+      map-merge(
+        map-get($utilities, "margin-start"),
+        (
+          class: ml,
+        )
+      ),
+    "margin-end":
+      map-merge(
+        map-get($utilities, "margin-end"),
+        (
+          class: mr,
+        )
+      ),
+    "padding-start":
+      map-merge(
+        map-get($utilities, "padding-start"),
+        (
+          class: pl,
+        )
+      ),
+    "padding-end":
+      map-merge(
+        map-get($utilities, "padding-end"),
+        (
+          class: pr,
+        )
+      ),
+      
+    "color":(
+        property:color,
+        class:text,
+        values:$theme-colors
+    ),
+    
+  )
+);

@@ -1,0 +1,61 @@
+
+body {
+  max-width: 1920px;
+  margin: auto;
+}
+
+//root variables
+
+:root {
+
+}
+
+
+a {
+  text-decoration: none;
+  transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  outline: 0;
+
+  color: inherit;
+
+  &:hover {
+    text-decoration: none;
+
+  }
+
+  &:focus {
+
+    text-decoration: none;
+    outline: 0;
+
+  }
+}
+
+
+.container-fluid {
+
+  @include media-breakpoint-up(xl) {
+    padding: 0 2rem;
+  }
+}
+
+
+.section {
+  &--stories {
+    padding: 2rem 0;
+    background-color: rgba($blue, .04);
+  }
+}
+
+.underline {
+  text-decoration: underline;
+}
+
+.text-sm {
+  font-size: 0.75rem;
+}
+
+

@@ -1,0 +1,55 @@
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
+@import "~bootstrap/scss/utilities";
+@import "./default";
+
+@import "~bootstrap/scss/root";
+@import "~bootstrap/scss/reboot";
+@import "~bootstrap/scss/containers";
+@import "~bootstrap/scss/grid";
+@import "~bootstrap/scss/forms";
+@import "~bootstrap/scss/buttons";
+@import "~bootstrap/scss/transitions";
+@import "~bootstrap/scss/carousel";
+@import "~bootstrap/scss/dropdown";
+
+@import "~bootstrap/scss/accordion";
+
+@import "~bootstrap/scss/helpers";
+@import "~bootstrap/scss/utilities";
+@import "~bootstrap/scss/utilities/api";
+
+$enable-responsive-font-size: true;
+
+.btn-primary {
+  color: white;
+
+  &:hover {
+    color: white;
+  }
+}
+
+.btn-outline-primary {
+  &:hover {
+    color: white;
+  }
+}
+
+.btn {
+  border-radius: 5rem;
+
+  svg {
+    height: 1rem;
+  }
+}
+
+.text-gray-500 {
+  color: $gray-500;
+}
+
+//@media (min-width: 768px) {
+//  .container, .container-sm, .container-md {
+//    max-width: 100%;
+//  }
+//}
