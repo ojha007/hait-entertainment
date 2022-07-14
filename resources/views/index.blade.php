@@ -35,34 +35,26 @@
     </div>
 </nav>
 <main>
-
     <section id="home" class="hero-section">
         <div id="demo2" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-indicators">
-                <button type="button" data-bs-target="#demo2" data-bs-slide-to="0" class="active" aria-current="true"
-                        aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#demo2" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                <button type="button" data-bs-target="#demo2" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                @foreach($sliderImages as $key=>$image)
+                    <button type="button" data-bs-target="#demo2" data-bs-slide-to="{{$key}}"
+                            class="{{$key==0 ?'active':""}}"
+                            aria-current="{{$key == 0 ? 'true':'false'}}"
+                            aria-label="Slide {{$key +1}}"></button>
+                @endforeach
             </div>
 
             <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <div class="img-container">
-                        <img src="./img/doctor-strange.jpg" alt="user registered">
+                @foreach($sliderImages as $key=>$image)
+                    <div class="carousel-item {{$key==0 ? 'active':''}}">
+                        <div class="img-container">
+                            <img src="{{asset($image->url)}}" alt="{{$image->title}}">
+                        </div>
                     </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="img-container">
-                        <img src="./img/spider-man.jpg" alt="user registered">
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="img-container">
-                        <img src="./img/bat-man.jpg" alt="user registered">
-                    </div>
-                </div>
+                @endforeach
             </div>
-
             <!-- Left and right controls/icons -->
             <button class="carousel-control-prev" type="button" data-bs-target="#demo2"
                     data-bs-slide="prev">
@@ -119,150 +111,28 @@
             </div>
 
             <div class="row g-3 row-cols-xs-1 row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5  card-container">
-                <div class="col">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="img-container">
-                                <img src="./img/movies/jurassic-park.jpg" alt="Secured Transaction"/>
-                                <div class="img-overlay">
-                                    <button class="book-tkt"></button>
+                @foreach($events as $event)
+                    <div class="col">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="img-container">
+                                    @foreach($event->images as $key=>$image)
+                                        @if($key ==0)
+                                            <img src="{{$image->file}}" alt="{{$event->title}}"/>
+                                        @endif
+                                    @endforeach
+                                    <div class="img-overlay">
+                                        <button class="book-tkt"></button>
+                                    </div>
                                 </div>
-                            </div>
-                            <h4>Jurassic World Dominion</h4>
-                            <div class="d-flex">
-                                <button class="btn btn-sm btn-outline-primary">Buy tickets</button>
+                                <h4>{{$event->title}}</h4>
+                                <div class="d-flex">
+                                    <button class="btn btn-sm btn-outline-primary">Buy tickets</button>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="img-container">
-                                <img src="./img/movies/thor.jpg" alt="Secured Transaction"/>
-                                <div class="img-overlay">
-                                    <button class="book-tkt"></button>
-                                </div>
-                            </div>
-                            <h4>Thor: Love and Thunder</h4>
-                            <div class="d-flex">
-                                <button class="btn btn-sm btn-outline-primary">Buy tickets</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="img-container">
-                                <img src="./img/movies/dr-strange.jpg" alt="Secured Transaction"/>
-                                <div class="img-overlay">
-                                    <button class="book-tkt"></button>
-                                </div>
-                            </div>
-                            <h4>Doctor Strange in the Multiverse of Madness</h4>
-                            <div class="d-flex">
-                                <button class="btn btn-sm btn-outline-primary">Buy tickets</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="img-container">
-                                <img src="./img/movies/morbius.jpg" alt="Secured Transaction"/>
-                                <div class="img-overlay">
-                                    <button class="book-tkt"></button>
-                                </div>
-                            </div>
-                            <h4>Morbius</h4>
-                            <div class="d-flex">
-                                <button class="btn btn-sm btn-outline-primary">Buy tickets</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="img-container">
-                                <img src="./img/movies/northman.jpg" alt="Secured Transaction"/>
-                                <div class="img-overlay">
-                                    <button class="book-tkt"></button>
-                                </div>
-                            </div>
-                            <h4>The Northman</h4>
-                            <div class="d-flex">
-                                <button class="btn btn-sm btn-outline-primary">Buy tickets</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="img-container">
-                                <img src="./img/movies/jurassic-park.jpg" alt="Secured Transaction"/>
-                                <div class="img-overlay">
-                                    <button class="book-tkt"></button>
-                                </div>
-                            </div>
-                            <h4>Jurassic World Dominion</h4>
-                            <div class="d-flex">
-                                <button class="btn btn-sm btn-outline-primary">Buy tickets</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="img-container">
-                                <img src="./img/movies/thor.jpg" alt="Secured Transaction"/>
-                                <div class="img-overlay">
-                                    <button class="book-tkt"></button>
-                                </div>
-                            </div>
-                            <h4>Thor: Love and Thunder</h4>
-                            <div class="d-flex">
-                                <button class="btn btn-sm btn-outline-primary">Buy tickets</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="img-container">
-                                <img src="./img/movies/dr-strange.jpg" alt="Secured Transaction"/>
-                                <div class="img-overlay">
-                                    <button class="book-tkt"></button>
-                                </div>
-                            </div>
-                            <h4>Doctor Strange in the Multiverse of Madness</h4>
-                            <div class="d-flex">
-                                <button class="btn btn-sm btn-outline-primary">Buy tickets</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="img-container">
-                                <img src="./img/movies/morbius.jpg" alt="Secured Transaction"/>
-                                <div class="img-overlay">
-                                    <button class="book-tkt"></button>
-                                </div>
-                            </div>
-                            <h4>Morbius</h4>
-                            <div class="d-flex">
-                                <button class="btn btn-sm btn-outline-primary">Buy tickets</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>
@@ -476,14 +346,13 @@
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3">
             <div class="">
                 <div class="img-container">
-                    <img src="./img/logo.png" style="height: 8rem" alt="Registered Remit"/>
+                    <img src="{{asset('main-logo.png')}}" style="height: 8rem" alt="{{config('app.name')}}"/>
                 </div>
-
                 <h3 class="mt-3">Hait Entertainment</h3>
                 <p class="d-block mt-2"> Hassle Free Movie Ticketing <br> at your finger tips</p>
                 <div class="tnc-container mt-2 text-sm">
-                    <a class="underline d-block" href="terms-and-condition.html">Terms and Condition</a>
-                    <a class="underline mt-1 d-block" href="privacy-policy.html">Privacy Policy</a>
+                    <a class="underline d-block" href="{{url('terms-and-condition')}}">Terms and Condition</a>
+                    <a class="underline mt-1 d-block" href="{{url('privacy-policy')}}">Privacy Policy</a>
                 </div>
             </div>
             <div class=" mt-5 mt-md-0">
@@ -508,7 +377,6 @@
 
             <div class=" mt-5 mt-lg-0">
                 <h3 class="mb-3">Follow us</h3>
-
                 <ul class="ml-0 pl-0" style="list-style: none">
                     <li class="mt-3">
                         <a href="https://www.facebook.com/registeredremit" class="d-flex align-items-center">
@@ -527,6 +395,8 @@
     </div>
     <p class="text-center mt-5">©<span id="footer-date"></span>. All rights reserved. Hait Entertainment</p>
 </footer>
+<script src="{{asset('js/frontend.js')}}" defer></script>
+{{--<script src="{{ asset('js/app.js') }}" defer></script>--}}
 <script>
     document.getElementById("footer-date").innerText = new Date().getFullYear();
 </script>

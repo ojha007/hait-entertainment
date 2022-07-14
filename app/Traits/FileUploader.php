@@ -22,4 +22,17 @@ trait FileUploader
         }
         return $paths;
     }
+
+    public function uploadFile($file, $dir = 'avatar'): ?string
+    {
+
+        if ($file) {
+            $path = 'files/' . $dir . '/' . Str::uuid() . time() . '.' . $file->getClientOriginalExtension();
+            $resource = File::get($file);
+            Storage::disk('public')->put($path, $resource);
+            return Storage::url($path);
+
+        }
+        return null;
+    }
 }
