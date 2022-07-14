@@ -41,14 +41,7 @@ class CreateEventsTable extends Migration
             $table->unsignedBigInteger('ticket_type_id')->nullable();
             $table->foreign('ticket_type_id')->references('id')->on('ticket_types');
             $table->float('rate');
-        });
-        Schema::create('event_images', function (Blueprint $table) {
-            $table->id();
-            $table->longText('file');
-            $table->boolean('is_banner')->default(false);
-            $table->unsignedBigInteger('event_id')->nullable();
-            $table->foreign('event_id')->references('id')->on('events');
-
+            $table->integer('seat');
         });
     }
 
@@ -59,7 +52,6 @@ class CreateEventsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('event_images');
         Schema::dropIfExists('event_tickets');
         Schema::dropIfExists('events');
         Schema::dropIfExists('ticket_types');

@@ -21,21 +21,7 @@ class EventRepository extends Repository
     }
 
 
-    /**
-     * @param Event $event
-     * @param array $files
-     */
-    public function saveImages(Event $event, array $files)
-    {
-        $eventImages = [];
-        for ($i = 0; $i < count($files); $i++) {
-            $eventImages[] = [
-                'file' => $files[$i],
-                'event_id' => $event->getAttribute('id')
-            ];
-        }
-        $event->images()->insert($eventImages);
-    }
+
 
 
     /**
@@ -56,15 +42,17 @@ class EventRepository extends Repository
      * @param Event $event
      * @param array $ticketTypeIds
      * @param array $rates
+     * @param array $seats
      */
-    public function storeEventPricing(Event $event, array $ticketTypeIds, array $rates)
+    public function storeEventPricing(Event $event, array $ticketTypeIds, array $rates, array $seats)
     {
         $pricing = [];
         for ($i = 0; $i < count($ticketTypeIds); $i++) {
             $pricing[] = [
                 'event_id' => $event->getAttribute('id'),
                 'ticket_type_id' => $ticketTypeIds[$i],
-                'rate' => $rates[$i]
+                'rate' => $rates[$i],
+                'seat' => $seats[$i],
             ];
         }
         $event->pricing()->insert($pricing);
@@ -73,8 +61,8 @@ class EventRepository extends Repository
     public function getAllEvents()
     {
         return $this->getModel()
-            ->with('pricing','eventType')
-            ->orderByDesc('created_at')
+            ->with('pricing', 'eventType')
+            ->orderByDesc('date')
             ->paginate(20);
     }
 

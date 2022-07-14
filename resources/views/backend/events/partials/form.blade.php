@@ -87,7 +87,7 @@
         <div class="col-md-6 uploaded-file-list ">
             <label class="form-label">Upload Event Images</label>
             <div class="file-upload mt-3" role="button">
-                <input type="file" name="files[]" multiple class="d-none upload__input_file"
+                <input type="file" name="image" class="d-none upload__input_file"
                        accept="image/png,image/jpg,image/jpeg">
                 <label
                     class="text-center">

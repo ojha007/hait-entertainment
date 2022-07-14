@@ -2,9 +2,9 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
+use App\Requests\FormRequestForApi;
 
-class EventRequest extends FormRequest
+class EventRequest extends FormRequestForApi
 {
 
     public function rules(): array
@@ -19,10 +19,12 @@ class EventRequest extends FormRequest
             'ticket_type_id.*' => 'required|numeric|exists:ticket_types,id',
             'rate' => 'required|array|min:1',
             'rate.*' => 'required|numeric|gt:0',
+            'seat' => 'required|array|min:1',
+            'seat.*' => 'required|numeric|gt:0',
             'address' => 'required|string',
             'event_type_id' => 'required|exists:event_types,id',
-            'files' => 'required|array|min:1',
-            'files.*' => 'required|image|mimes:jpg,png,jpeg,webp,gif,svg'
+            'image' => 'required|image|mimes:jpg,png,jpeg,webp,gif,svg'
         ];
     }
+
 }

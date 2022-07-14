@@ -6,6 +6,7 @@ function toggleNavMenu() {
 }
 
 window.addEventListener("load", toggleNavMenu);
+
 window.addEventListener("resize", function() {
   const navMenuItemsClassList = document.getElementById("nav-menu-items").classList;
   if (window.innerWidth >= 768) {

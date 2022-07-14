@@ -10,12 +10,12 @@ class EventPricing extends Model
 
     public $timestamps = false;
     protected $table = 'event_tickets';
-    protected $fillable = ['event_id', 'ticket_type_id', 'rate'];
+    protected $fillable = ['event_id', 'ticket_type_id', 'rate', 'seat'];
     protected $with = ['ticket'];
 
     public function ticket(): BelongsTo
     {
-        return $this->belongsTo(TicketType::class,'ticket_type_id');
+        return $this->belongsTo(TicketType::class, 'ticket_type_id');
     }
 
 }

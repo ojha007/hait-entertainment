@@ -12,7 +12,7 @@
     <div class="row">
         <div class="col-md-6">
             <div class="box">
-                <div class="box-header">
+                <div class="box-header with-border">
                     <h3 class="box-title">Add/Edit Slider Image</h3>
                 </div>
                 {!! Form::open(['route'=>$routePrefix.'carousals.store','files'=>true,'method'=>'POST']) !!}
@@ -41,7 +41,7 @@
         </div>
         <div class="col-md-6">
             <div class="box">
-                <div class="box-header">
+                <div class="box-header with-border">
                     <h3 class="box-title">
                         All Slider images are listed here.
                     </h3>
@@ -66,7 +66,7 @@
                             <tr>
                                 <td>{{$image->title}}</td>
                                 <td>
-                                    <img src="{{asset($image->url)}}" alt="{{$image->title}}" width="100px" height="100px">
+                                    <img src="{{asset($image->url)}}" alt="{{$image->title}}" width="200px" height="100px">
                                 </td>
                                 <td>
 

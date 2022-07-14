@@ -11,7 +11,7 @@
 @section('content')
     @include('backend.tickets.modal')
     <div class="box">
-        <div class="box-header">
+        <div class="box-header with-border">
             <h3 class="box-title">
                 All Ticket are listed.
             </h3>

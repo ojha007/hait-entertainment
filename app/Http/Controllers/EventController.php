@@ -49,19 +49,15 @@ class EventController extends Controller
     public function store(EventRequest $request): RedirectResponse
     {
         try {
-            $eventAttributes = $request->only('title', 'event_type_id', 'description', 'address', 'date', 'time');
+            $attributes = $request->only('title', 'event_type_id', 'description', 'address', 'date', 'time', 'organizer');
             DB::beginTransaction();
-            $event = $this->repository->create($eventAttributes);
+            $attributes['image'] = $this->uploadFile($request->file('image'), 'events');
+            $event = $this->repository->create($attributes);
 
             $ticketTypeIds = $request->get('ticket_type_id');
             $rates = $request->get('rate');
-            $this->repository->storeEventPricing($event, $ticketTypeIds, $rates);
-
-            $removedIndex = $request->get('removed_index') ?? [];
-            $files = $request->file('files');
-            $toSaveFiles = $this->repository->prepareImageToSave($removedIndex, $files);
-            $filesPath = $this->uploadFiles($toSaveFiles, 'events');
-            $this->repository->saveImages($event, $filesPath);
+            $seats = $request->get('seat');
+            $this->repository->storeEventPricing($event, $ticketTypeIds, $rates, $seats);
             DB::commit();
             $message = successMessage('CREATED', 'Event');
             return redirect()
@@ -79,17 +75,46 @@ class EventController extends Controller
 
     public function show($id)
     {
-        $event = $this->repository->getWith($id, ['images', 'pricing', 'eventType']);
+        $event = $this->repository->getWith($id, ['pricing', 'eventType']);
         return view($this->viewPath . 'show', compact('event'));
     }
 
     public function edit($id)
     {
-
-        $event = $this->repository->getWith($id, ['images', 'pricing', 'eventType']);
+        $event = $this->repository->getWith($id, ['pricing', 'eventType']);
         $eventTypes = (new EventTypeRepository(new EventType()))->selectEventTypes();
         $tickets = (new TicketTypeRepository(new TicketType()))->selectTicketTypes();
         return view($this->viewPath . 'edit', compact('event', 'eventTypes', 'tickets'));
+    }
+
+
+    public function update(EventRequest $request, $id): RedirectResponse
+    {
+
+        try {
+            DB::beginTransaction();
+            $attributes = $request->only('title', 'event_type_id', 'description', 'address', 'date', 'time', 'organizer');
+            if ($request->has('image'))
+                $attributes['image'] = $this->uploadFile($request->file('image'), 'events');
+            $event = $this->repository->update($id, $attributes);
+            $event->pricing()->delete();
+            $ticketTypeIds = $request->get('ticket_type_id');
+            $rates = $request->get('rate');
+            $seats = $request->get('seat');
+            $this->repository->storeEventPricing($event, $ticketTypeIds, $rates, $seats);
+            DB::commit();
+            $message = successMessage('UPDATED', 'Event');
+            return redirect()
+                ->route($this->routePath . 'show', $event->id)
+                ->with('success', $message);
+        } catch (Throwable $exception) {
+            DB::rollBack();
+            $message = errorMessage('UPDATE', 'Event');
+            return redirect()
+                ->back()
+                ->withInput()
+                ->with('error', $message);
+        }
     }
 
 }

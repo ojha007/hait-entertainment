@@ -17,8 +17,7 @@
                 <i class="fa fa-arrow-left"></i> Back
             </a>
         </div>
-        {!! Form::model($event,['route'=>[$routePrefix.'events.update',$event->id],'method'=>'POST']) !!}
-        @method('_patch')
+        {!! Form::model($event,['route'=>[$routePrefix.'events.update',$event->id],'method'=>'PATCH','files'=>true]) !!}
         <div class="box-body">
             @include('backend.events.partials.form')
         </div>

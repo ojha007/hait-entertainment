@@ -53,6 +53,7 @@
                         <tr>
                             <th>Ticket</th>
                             <th>Price</th>
+                            <th>Total Seat</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -60,6 +61,7 @@
                             <tr>
                                 <td>{{$pricing->ticket->name}}</td>
                                 <td>{{$pricing->rate}}</td>
+                                <td>{{$pricing->seat}}</td>
                             </tr>
                         @endforeach
                         </tbody>
@@ -67,6 +69,7 @@
                 </div>
             </div>
             <div class="col-md-6">
+                <img src="{{asset($event->image)}}" alt="{{$event->title}}" class="img-thumbnail rounded" width="50%" height="50%">
 
             </div>
         </div>

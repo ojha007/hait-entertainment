@@ -83,18 +83,18 @@
                             <div class="card">
                                 <div class="card-body">
                                     <div class="img-container">
-                                        @foreach($event->images as $key=>$image)
-                                            @if($key ==0)
-                                                <img src="{{$image->file}}" alt="{{$event->title}}"/>
-                                            @endif
-                                        @endforeach
+                                        <img src="{{$event->image}}" alt="{{$event->title}}"/>
                                         <div class="img-overlay">
                                             <button class="book-tkt"></button>
                                         </div>
                                     </div>
                                     <h4>{{$event->title}}</h4>
+                                    <p class="my-2">
+                                        {{\Carbon\Carbon::parse($event->date)->format('d M Y')}}
+                                        {{\Carbon\Carbon::parse($event->time)->format('h:i A')}}
+                                    </p>
                                     <div class="d-flex">
-                                        <button class="btn btn-sm btn-outline-primary">Buy tickets</button>
+                                        <button class="btn btn-md btn-outline-primary">Buy Tickets</button>
                                     </div>
                                 </div>
                             </div>
