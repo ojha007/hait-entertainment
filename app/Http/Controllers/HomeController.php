@@ -7,6 +7,7 @@ use App\Models\Event;
 use App\Repositories\CarousalRepository;
 use App\Repositories\EventRepository;
 use Illuminate\Contracts\Support\Renderable;
+use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
@@ -39,5 +40,21 @@ class HomeController extends Controller
     public function events()
     {
 
+    }
+
+    public function eventDetail($id)
+    {
+        $repo = (new EventRepository(new Event()));
+        $event = $repo->getById($id);
+        $upcomingEvents = $repo->upcomingEvents(5);
+        return view('frontend.events.detail', compact('event', 'upcomingEvents'));
+    }
+
+    public function buyTicket(Request $request, $id)
+    {
+        $repo = (new EventRepository(new Event()));
+        $event = $repo->getById($id);
+        $bookings = $request->get('bookings');
+        return view('frontend.events.buy-ticket', compact('event', 'bookings'));
     }
 }

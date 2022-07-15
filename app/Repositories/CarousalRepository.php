@@ -21,14 +21,14 @@ class CarousalRepository extends Repository
     public function getAllImages()
     {
         return $this->getModel()
-            ->orderByDesc('order')
+            ->orderByDesc('created_at')
             ->get();
     }
 
     public function getImages($size)
     {
         return $this->getModel()
-            ->orderByDesc('order')
+            ->orderByDesc('created_at')
             ->take($size)
             ->get();
     }

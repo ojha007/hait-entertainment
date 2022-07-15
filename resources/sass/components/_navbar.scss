@@ -1,110 +1,113 @@
 .navbar.custom-nav {
-  position: relative;
+    position: relative;
 
-  .navbar-brand {
-    height: 6rem;
-    width: auto;
+    .navbar-brand {
+        height: 6rem;
+        width: auto;
 
-    img {
-      height: 100%;
-    }
-  }
-
-  .image-col {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    .nav-toggle-container {
-      cursor: pointer;
-    }
-  }
-
-  .nav-menu-col {
-    @include media-breakpoint-down(md) {
-      box-shadow: 0 15px 19px 1px rgba(156, 185, 226, 0.41);
+        img {
+            height: 100%;
+        }
     }
 
-
-    .nav-menu-items {
-      margin-top: 1rem;
-      list-style: none;
-      display: flex;
-      justify-content: end;
-      align-items: center;
-      width: 100%;
-      color: $gray-200;
-
-      @include media-breakpoint-down(md) {
-        padding: 1rem;
-        flex-direction: column;
-        justify-content: center;
+    .image-col {
+        display: flex;
+        justify-content: space-between;
         align-items: center;
-        position: absolute;
-        top: 3.4rem;
-        left: 0;
-        width: 100%;
-        background-color: rgb(249, 250, 251);
-        box-shadow: 0 15px 19px 1px rgba(156, 185, 226, 0.41);
-        z-index: 3;
-        li, a {
-          margin-bottom: 0.5rem;
-          text-align: center;
+
+        .nav-toggle-container {
+            cursor: pointer;
         }
-        border-bottom: 2px solid $gray-200;
-      }
-
-      li, a {
-        margin-left: 1rem;
-      }
-
-      li {
-
-        a {
-          display: inline-block;
-          margin-left: 0;
-          color: $gray-200;
-          border-radius: 0;
-        }
-
-        a.active {
-          border-bottom: 2px solid $gray-200;
-        }
-      }
     }
-  }
+
+    .nav-menu-col {
+        @include media-breakpoint-down(md) {
+            box-shadow: 0 15px 19px 1px rgba(156, 185, 226, 0.41);
+        }
+
+
+        .nav-menu-items {
+            margin-top: 1rem;
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            color: $gray-200;
+
+            @include media-breakpoint-down(md) {
+                padding: 1rem;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                position: absolute;
+                top: 3.4rem;
+                width: 80%;
+                border-radius: 0.5rem;
+                z-index: 3;
+                right: 50%;
+                transform: translateX(50%);
+                li, a {
+                    margin-bottom: 0.5rem !important;
+                    text-align: center;
+                }
+                background: #3a3a3a;
+                margin-left: auto;
+                margin-right: auto;
+                border:1px solid #4f4f4f;
+            }
+
+            li, a {
+                margin-left: 1rem;
+            }
+
+            li {
+
+                a {
+                    display: inline-block;
+                    margin-left: 0;
+                    color: $gray-200;
+                    border-radius: 0;
+                }
+
+                a.active {
+                    border-bottom: 2px solid $gray-200;
+                }
+            }
+        }
+    }
 }
 
 .animate-nav-menu-open {
-  animation: nav-grow-rect-open .3s forwards ease-in;
+    animation: nav-grow-rect-open .3s forwards ease-in;
 }
 
 @keyframes nav-grow-rect-open {
-  from {
-    clip-path: inset(0 0 100% 0);
-  }
-  to {
-    clip-path: inset(0 0 0 0);
-  }
+    from {
+        clip-path: inset(0 0 100% 0);
+    }
+    to {
+        clip-path: inset(0 0 0 0);
+    }
 }
 
 .animate-nav-menu-close {
-  animation: nav-grow-rect-close .3s forwards ease-in;
+    animation: nav-grow-rect-close .3s forwards ease-in;
 }
 
 @keyframes nav-grow-rect-close {
-  from {
-    clip-path: inset(0 0 0 0);
-  }
-  to {
-    clip-path: inset(0 0 100% 0);
-  }
+    from {
+        clip-path: inset(0 0 0 0);
+    }
+    to {
+        clip-path: inset(0 0 100% 0);
+    }
 }
 
 .home-nav {
-  position: absolute !important;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 10;
+    position: absolute !important;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;
 }

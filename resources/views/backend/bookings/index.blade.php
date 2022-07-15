@@ -14,7 +14,11 @@
             <h3 class="box-title">
                 All booking are listed here.
             </h3>
-            <div class="box-body"></div>
+            <div class="box-body">
+                {!! Form::open(['route'=>$routePrefix.'bookings.store','method'=>'POST']) !!}
+                <button type="submit">SAVE</button>
+                {!! Form::close() !!}
+            </div>
             <div class="box-footer"></div>
         </div>
     </div>

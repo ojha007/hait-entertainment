@@ -3,10 +3,10 @@ import "../../sass/icon.css";
 import "bootstrap/js/src/carousel";
 import "bootstrap/js/src/collapse";
 import "bootstrap/js/src/dropdown";
-import "./menu";
-import "./navigation";
-import "slick-carousel";
 import "jquery";
+import "./menu";
+// import "./navigation";
+import "slick-carousel";
 
 $(".our-partners-slick-container").slick({
     arrows: false,

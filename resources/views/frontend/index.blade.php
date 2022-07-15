@@ -77,24 +77,30 @@
                     </div>
                 </div>
 
-                <div class="row g-3 row-cols-xs-1 row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5  card-container">
+                <div
+                    class="row g-3 row-cols-xs-1 row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 card-container movie-card">
                     @foreach($events as $event)
                         <div class="col">
                             <div class="card">
                                 <div class="card-body">
-                                    <div class="img-container">
-                                        <img src="{{$event->image}}" alt="{{$event->title}}"/>
-                                        <div class="img-overlay">
-                                            <button class="book-tkt"></button>
+                                    <a href="{{route('events.show',$event->id)}}">
+                                        <div class="img-container">
+                                            <img src="{{$event->image}}" alt="{{$event->title}}"/>
+
+                                            <div class="img-overlay">
+                                                <button class="book-tkt"></button>
+                                            </div>
                                         </div>
-                                    </div>
+                                    </a>
                                     <h4>{{$event->title}}</h4>
                                     <p class="my-2">
                                         {{\Carbon\Carbon::parse($event->date)->format('d M Y')}}
                                         {{\Carbon\Carbon::parse($event->time)->format('h:i A')}}
                                     </p>
                                     <div class="d-flex">
-                                        <button class="btn btn-md btn-outline-primary">Buy Tickets</button>
+                                        <a href="{{route('events.show',$event->id)}}"
+                                           class="btn btn-md btn-outline-primary">
+                                            Buy Tickets</a>
                                     </div>
                                 </div>
                             </div>

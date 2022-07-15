@@ -62,14 +62,16 @@
                         </tr>
                         </thead>
                         <tbody>
+                        @inject('buttonHelper','App\Services\TableButtonService')
                         @forelse($images as $image)
                             <tr>
                                 <td>{{$image->title}}</td>
                                 <td>
-                                    <img src="{{asset($image->url)}}" alt="{{$image->title}}" width="200px" height="100px">
+                                    <img src="{{asset($image->url)}}" alt="{{$image->title}}" width="200px"
+                                         height="100px">
                                 </td>
                                 <td>
-
+                                    {!! $buttonHelper->deleteButton($routePrefix.'carousals.destroy',$image->id) !!}
                                 </td>
                             </tr>
                         @empty

@@ -21,9 +21,6 @@ class EventRepository extends Repository
     }
 
 
-
-
-
     /**
      * @param array $removedIndex
      * @param array $files
@@ -66,5 +63,13 @@ class EventRepository extends Repository
             ->paginate(20);
     }
 
+
+    public function upcomingEvents($size)
+    {
+        return $this->getModel()
+            ->where('date', '>', now()->format('Y-m-d'))
+            ->orderByDesc('date')
+            ->paginate($size);
+    }
 
 }

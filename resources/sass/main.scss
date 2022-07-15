@@ -12,10 +12,12 @@
 @import "base/utilities";
 @import "base/typography";
 @import "base/spacing";
+@import "base/icons";
 
 @import "components/navbar";
 @import "components/hero";
 @import "components/movies_shows";
+@import "components/movie_details";
 @import "components/our_partners";
 @import "components/testimonial";
 @import "components/faqs";
@@ -23,9 +25,9 @@
 @import "components/tnc";
 
 body {
-  background-color: #3a3a3a;
-  color: $gray-200;
-  font-family: 'Poppins', sans-serif;
+    background-color: #3a3a3a;
+    color: $gray-200;
+    font-family: 'Poppins', sans-serif;
 }
 
 

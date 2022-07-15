@@ -67,4 +67,12 @@ class CarousalController extends Controller
         }
     }
 
+    public function destroy($id): RedirectResponse
+    {
+        $this->repository->delete($id);
+        $message = successMessage('DELETED', $this->modelName);
+        return redirect()
+            ->back()
+            ->with('success', $message);
+    }
 }

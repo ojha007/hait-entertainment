@@ -3215,21 +3215,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var bootstrap_js_src_carousel__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! bootstrap/js/src/carousel */ "./node_modules/bootstrap/js/src/carousel.js");
 /* harmony import */ var bootstrap_js_src_collapse__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! bootstrap/js/src/collapse */ "./node_modules/bootstrap/js/src/collapse.js");
 /* harmony import */ var bootstrap_js_src_dropdown__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! bootstrap/js/src/dropdown */ "./node_modules/bootstrap/js/src/dropdown.js");
-/* harmony import */ var _menu__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./menu */ "./resources/js/frontend/menu.js");
-/* harmony import */ var _menu__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_menu__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _navigation__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./navigation */ "./resources/js/frontend/navigation.js");
-/* harmony import */ var _navigation__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_navigation__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _menu__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./menu */ "./resources/js/frontend/menu.js");
+/* harmony import */ var _menu__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_menu__WEBPACK_IMPORTED_MODULE_6__);
 /* harmony import */ var slick_carousel__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! slick-carousel */ "./node_modules/slick-carousel/slick/slick.js");
 /* harmony import */ var slick_carousel__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(slick_carousel__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
-/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_8__);
+/* provided dependency */ var $ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 
 
 
 
 
 
-
+ // import "./navigation";
 
 
 $(".our-partners-slick-container").slick({
@@ -3295,42 +3294,6 @@ window.addEventListener("scroll", function () {
     navbar.classList.remove("sticky");
   }
 });
-
-/***/ }),
-
-/***/ "./resources/js/frontend/navigation.js":
-/*!*********************************************!*\
-  !*** ./resources/js/frontend/navigation.js ***!
-  \*********************************************/
-/***/ (() => {
-
-// Get all sections that have an ID defined
-var sections = document.querySelectorAll("section[id]"); // Add an event listener listening for scroll
-
-window.addEventListener("scroll", navHighlighter);
-
-function navHighlighter() {
-  // Get current scroll position
-  var scrollY = window.scrollY; // Now we loop through sections to get height, top and ID values for each
-
-  sections.forEach(function (current) {
-    var sectionHeight = current.offsetHeight; // This allows the use of sections inside a relative parent, which I'm not using here, but needed for a project
-    //
-
-    var sectionTop = current.getBoundingClientRect().top + window.scrollY - 50;
-    var sectionId = current.getAttribute("id");
-    /*
-    - If our current scroll position enters the space where current section on screen is, add .active class to corresponding navigation link, else remove it
-    - To know which link needs an active class, we use sectionId variable we are getting while looping through sections as an selector
-    */
-
-    if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
-      document.querySelector("a[href*=" + sectionId + "]").classList.add("active");
-    } else {
-      document.querySelector("a[href*=" + sectionId + "]").classList.remove("active");
-    }
-  });
-}
 
 /***/ }),
 
