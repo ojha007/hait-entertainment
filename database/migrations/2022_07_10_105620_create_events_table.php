@@ -30,6 +30,7 @@ class CreateEventsTable extends Migration
             $table->longText('description');
             $table->mediumText('address')->nullable();
             $table->integer('total_seat')->nullable();
+            $table->mediumText('image');
             $table->unsignedBigInteger('event_type_id')->nullable();
             $table->foreign('event_type_id')->references('id')->on('event_types');
             $table->timestamps();
