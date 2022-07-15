@@ -57,7 +57,8 @@ class EventController extends Controller
             $ticketTypeIds = $request->get('ticket_type_id');
             $rates = $request->get('rate');
             $seats = $request->get('seat');
-            $this->repository->storeEventPricing($event, $ticketTypeIds, $rates, $seats);
+            if (count(array_filter($ticketTypeIds)) > 0)
+                $this->repository->storeEventPricing($event, $ticketTypeIds, $rates, $seats);
             DB::commit();
             $message = successMessage('CREATED', 'Event');
             return redirect()
