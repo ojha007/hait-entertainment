@@ -65,6 +65,7 @@ class EventController extends Controller
                 ->route($this->routePath . 'show', $event->id)
                 ->with('success', $message);
         } catch (Throwable $exception) {
+            dd($exception);
             DB::rollBack();
             $message = errorMessage('CREATE', 'Event');
             return redirect()
