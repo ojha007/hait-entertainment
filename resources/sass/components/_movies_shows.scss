@@ -1,6 +1,16 @@
 .movies-shows {
     @include defaultPaddingLayout();
 
+    &.event-page {
+        margin-top: -15rem;
+        z-index: 2;
+        position: relative;
+
+        @include media-breakpoint-down(md) {
+            margin-top: unset;
+        }
+    }
+
     .services-heading {
         @include sec-heading();
     }
@@ -10,8 +20,12 @@
     }
 
     .dropdown-menu {
-        .dropdown-item:hover {
-            background: transparent;
+        .dropdown-item {
+            background: transparent !important;
+
+            &:hover {
+                background: transparent !important;
+            }
         }
 
         width: 25rem !important;
@@ -40,6 +54,7 @@
 
             .form-control {
                 padding-left: 3rem;
+                color: white
             }
 
             i {

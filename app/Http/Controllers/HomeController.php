@@ -39,7 +39,9 @@ class HomeController extends Controller
 
     public function events()
     {
-
+        $repo = (new EventRepository(new Event()));
+        $events = $repo->upcomingEvents(10);
+        return view('frontend.events.index', compact('events'));
     }
 
     public function eventDetail($id)
@@ -50,11 +52,17 @@ class HomeController extends Controller
         return view('frontend.events.detail', compact('event', 'upcomingEvents'));
     }
 
-    public function buyTicket(Request $request, $id)
+    public function checkOut(Request $request, $id)
     {
         $repo = (new EventRepository(new Event()));
-        $event = $repo->getById($id);
-        $bookings = $request->get('bookings');
-        return view('frontend.events.buy-ticket', compact('event', 'bookings'));
+        $event = $repo->getWith($id, 'pricing', 'pricing.ticket');
+        $requestPricing = $request->get('pricing') ?? [];
+        $total = 0;
+        foreach ($event->pricing as $pricing) {
+            if (array_key_exists($pricing->id, $requestPricing)) {
+                $total += $pricing->rate * $requestPricing[$pricing->id];
+            }
+        }
+        return view('frontend.events.checkout', compact('event', 'requestPricing', 'total'));
     }
 }

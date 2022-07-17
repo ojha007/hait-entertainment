@@ -1,81 +1,89 @@
 .contact-form {
-  @include defaultPaddingLayout();
+    @include defaultPaddingLayout();
 
-  .services-heading {
-    @include sec-heading();
-  }
 
-  .form-content {
-
-    padding: 3rem 4rem;
-
-    @include media-breakpoint-down(md) {
-      padding: 2rem;
+    .services-heading {
+        @include sec-heading();
     }
 
-    @include media-breakpoint-down(sm) {
-      padding: 2rem 1.4rem;
-    }
+    .form-content {
 
-    .info-col {
+        padding: 3rem 4rem;
 
-      ul {
-        list-style: none;
-        padding-left: 0;
-      }
-
-      .contact-info {
-        i {
-          color: $primary;
-          margin-right: 1rem;
+        @include media-breakpoint-down(md) {
+            padding: 2rem;
         }
-      }
 
-      .social-info {
-        display: flex;
-
-        li {
-          height: 3rem;
-          width: 3rem;
-          font-size: 1.25rem;
-          margin-right: 3rem;
-          border-radius: 50%;
-          transition: 0.2s linear;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-
-          &:hover {
-            background-color: $primary;
-            color: white !important;
-          }
-
-          a:hover {
-            color: white !important;
-          }
+        @include media-breakpoint-down(sm) {
+            padding: 1rem 0;
         }
-      }
-    }
 
-    .form-col {
-      overflow: hidden;
-      background-color: $gray-400;
-      border-radius: 1rem;
-      padding: 2rem;
+        .info-col {
 
-      @include media-breakpoint-down(sm) {
-        padding: 1.4rem;
-      }
+            ul {
+                list-style: none;
+                padding-left: 0;
+            }
 
+            .contact-info {
+                li {
+                    display: flex;
+                    align-items: center;
+                    margin-top: 1rem;
 
-      .form-group {
-        margin-bottom: 1rem;
+                    i, svg {
+                        color: $primary;
+                        margin-right: 1rem;
+                        height: 1.5rem;
+                    }
+                }
+            }
 
-        .form-control {
-          background-color: transparent;
+            .social-info {
+                display: flex;
+
+                li {
+                    height: 3rem;
+                    width: 3rem;
+                    font-size: 1.25rem;
+                    margin-right: 3rem;
+                    border-radius: 50%;
+                    transition: 0.2s linear;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+
+                    &:hover {
+                        background-color: $primary;
+                        color: white !important;
+                    }
+
+                    a:hover {
+                        color: white !important;
+                    }
+                }
+            }
         }
-      }
-    }
 
-  }
+        .form-col {
+            overflow: hidden;
+            background-color: $gray-400;
+            border-radius: 1rem;
+            padding: 2rem;
+
+            @include media-breakpoint-down(sm) {
+                padding: 1.4rem;
+            }
+
+
+            .form-group {
+                margin-bottom: 1rem;
+
+                .form-control {
+                    background-color: transparent;
+                    color: white
+                }
+            }
+        }
+    }
 }

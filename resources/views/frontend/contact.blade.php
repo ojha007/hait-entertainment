@@ -1,6 +1,6 @@
 @extends('frontend.layouts.master')
 @section('content')
-    @include('frontend.layouts.nav')
+    @include('frontend.layouts.nav',['navClass'=>'custom-nav'])
     <main>
         <section class="contact-form">
             <div class="services-heading align-items-center">

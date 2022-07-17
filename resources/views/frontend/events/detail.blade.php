@@ -1,6 +1,6 @@
 @extends('frontend.layouts.master')
 @section('content')
-    @include('frontend.layouts.nav')
+    @include('frontend.layouts.nav',['navClass'=>'custom-nav home-nav'])
     <main>
         <div class="top-bg-image">
             <div class="img-container">
@@ -36,7 +36,7 @@
                         <div class="event-description">
                             {!! $event->description !!}
                         </div>
-                        {!! Form::open(['route'=>['events.buy',$event->id],'method'=>'POST']) !!}
+                        {!! Form::open(['route'=>['events.checkOut',$event->id],'method'=>'POST']) !!}
 
                         <div class="mt-5 border rounded-3 p-3">
                             <div class="d-flex justify-content-between align-items-start mt-3">
@@ -57,7 +57,7 @@
                                                         <i class="ic-minus"></i>
                                                     </button>
                                                 </div>
-                                                {!! Form::number('booking['.$event->id.']',0,['class'=>'form-control seatSelected','min'=>'0','style'=>'width:55px']) !!}
+                                                {!! Form::number('pricing['.$pricing->id.']',0,['class'=>'form-control seatSelected','min'=>'0','style'=>'width:55px']) !!}
                                                 <div class="input-group-append">
                                                     <button class="btn btn-sm btn-plus pt-2" type="button">
                                                         <i class="ic-plus"></i>
@@ -76,7 +76,7 @@
                                 </div>
                                 <div>
                                     <div class="mx-3">
-                                        <span class="totalAmount">$ 0.0</span>
+                                        <h4 class="totalAmount">$ 0.0</h4>
                                     </div>
                                 </div>
                             </div>
@@ -118,24 +118,6 @@
     </main>
     @include('frontend.layouts.footer')
 @endsection
-@push('styles')
-    <style>
-        .totalAmount {
-            font-size: 20px;
-        }
-
-        input[type="number"] {
-            -webkit-appearance: textfield;
-            -moz-appearance: textfield;
-            appearance: textfield;
-        }
-
-        input[type=number]::-webkit-inner-spin-button,
-        input[type=number]::-webkit-outer-spin-button {
-            -webkit-appearance: none;
-        }
-    </style>
-@endpush
 @push('scripts')
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
             integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>

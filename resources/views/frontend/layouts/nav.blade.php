@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg custom-nav {{isset($navClass) ? 'custom-nav' :'home-nav' }}" id="navbar">
+<nav class="navbar navbar-expand-lg  {{$navClass ?? 'home-nav' }}" id="navbar">
     <div class="container">
         <div class="row w-100">
             <div class="col-xl-5 col-md-3 col-12 image-col">

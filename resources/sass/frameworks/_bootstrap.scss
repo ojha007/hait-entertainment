@@ -23,29 +23,23 @@
 $enable-responsive-font-size: true;
 
 .btn-primary {
-  color: white;
-
-  &:hover {
     color: white;
-  }
-}
 
-.btn-outline-primary {
-  &:hover {
-    color: white;
-  }
+    &:hover {
+        color: white;
+    }
 }
 
 .btn {
-  border-radius: 5rem;
+    border-radius: 5rem;
 
-  svg {
-    height: 1rem;
-  }
+    svg {
+        height: 1rem;
+    }
 }
 
 .text-gray-500 {
-  color: $gray-500;
+    color: $gray-500;
 }
 
 //@media (min-width: 768px) {

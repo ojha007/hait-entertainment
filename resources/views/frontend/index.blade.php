@@ -1,6 +1,6 @@
 @extends('frontend.layouts.master')
 @section('content')
-    @include('frontend.layouts.nav')
+    @include('frontend.layouts.nav',['navClass'=>'home-nav custom-nav'])
     <main>
         <section id="home" class="hero-section">
             <div id="demo2" class="carousel slide" data-bs-ride="carousel">

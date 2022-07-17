@@ -1,53 +1,53 @@
 @mixin defaultMarginLayout() {
-  margin-top: 7rem;
-  margin-bottom: 7rem;
+    margin-top: 7rem;
+    margin-bottom: 7rem;
 }
 
 @mixin defaultPaddingLayout() {
-  padding-top: 4rem;
-  padding-bottom: 4rem;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
 }
 
 @mixin xs-breakpoint-down() {
-  @media all and (max-width: 360px) {
-    @content;
-  }
+    @media all and (max-width: 360px) {
+        @content;
+    }
 }
 
 @mixin sec-heading() {
-  display: flex;
-  align-items: start;
-  flex-direction: column;
-  margin-bottom: 1rem;
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+    margin-bottom: 1rem;
 
-  h1 {
-    font-size: 2.5rem;
-    color: white;
-    margin-bottom: 0.5rem;
-    @include media-breakpoint-down(sm) {
-      font-size: 1.75rem;
+    h1 {
+        font-size: 2.5rem;
+        color: white;
+        margin-bottom: 0.5rem;
+        @include media-breakpoint-down(sm) {
+            font-size: 1.75rem;
+        }
     }
-  }
 
-  .heading-underline {
-    height: 0.25rem;
-    width: 12rem;
-    background: $primary;
-    margin-bottom: 1.5rem;
+    .heading-underline {
+        height: 0.25rem;
+        width: 12rem;
+        background: $secondary;
+        margin-bottom: 1.5rem;
 
-  }
-
-  p {
-    font-size: 1.25rem;
-    width: 75%;
-    font-weight: 300;
-    @include media-breakpoint-down(lg) {
-      width: 100%;
     }
-    @include media-breakpoint-down(sm) {
-      font-size: 1rem;
+
+    p {
+        font-size: 1.25rem;
+        width: 75%;
+        font-weight: 300;
+        @include media-breakpoint-down(lg) {
+            width: 100%;
+        }
+        @include media-breakpoint-down(sm) {
+            font-size: 1rem;
+        }
     }
-  }
 }
 
 @mixin default-para() {

@@ -19,5 +19,5 @@ Route::get('/', [HomeController::class, 'index'])->name('index');
 Route::get('/contact-us', [HomeController::class, 'contactUs'])->name('contactUs');
 Route::get('events', [HomeController::class, 'events'])->name('events');
 Route::get('events/{id}', [HomeController::class, 'eventDetail'])->name('events.show');
-Route::post('events/buy/{id}', [HomeController::class, 'buyTicket'])->name('events.buy');
+Route::post('events/check-out/{id}', [HomeController::class, 'checkOut'])->name('events.checkOut');
 Auth::routes();
