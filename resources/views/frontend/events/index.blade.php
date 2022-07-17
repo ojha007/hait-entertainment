@@ -1,6 +1,6 @@
 @extends('frontend.layouts.master')
 @section('content')
-    @include('frontend.layouts.nav',['navClass'=>'custom-nav'])
+    @include('frontend.layouts.nav',['navClass'=>'custom-nav home-nav'])
     <main>
         <section id="home" class="hero-section">
             <div id="demo2" class="carousel slide" data-bs-ride="carousel">
@@ -72,7 +72,7 @@
                                     </a>
                                     <h4>{{$event->title}}</h4>
                                     <div class="d-flex">
-                                        <button class="btn btn-md btn-primary">Buy tickets</button>
+                                        <a href="{{route('events.show',$event->id)}}" class="btn btn-md btn-primary">Buy tickets</a>
                                     </div>
                                 </div>
                             </div>
