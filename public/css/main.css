@@ -7885,6 +7885,18 @@ a:focus {
   font-size: 0.75rem;
 }
 
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
 h1, .h1 {
   font-size: calc(1.3375rem + 1.05vw);
 }
@@ -8205,6 +8217,24 @@ p {
     height: 25vh;
   }
 }
+.hero-section .carousel-inner .carousel-item, .hero-section .carousel-inner .carousel-item.event-page {
+  height: 30rem;
+}
+@media (max-width: 991.98px) {
+  .hero-section .carousel-inner .carousel-item, .hero-section .carousel-inner .carousel-item.event-page {
+    height: 45vh;
+  }
+}
+@media (max-width: 767.98px) {
+  .hero-section .carousel-inner .carousel-item, .hero-section .carousel-inner .carousel-item.event-page {
+    height: 35vh;
+  }
+}
+@media (max-width: 575.98px) {
+  .hero-section .carousel-inner .carousel-item, .hero-section .carousel-inner .carousel-item.event-page {
+    height: 25vh;
+  }
+}
 .hero-section .carousel-inner .carousel-item:before {
   position: absolute;
   z-index: 1;
@@ -8473,13 +8503,6 @@ p {
      object-position: center;
 }
 
-.event-description ul {
-  list-style: none;
-}
-.event-description ul li {
-  display: block !important;
-}
-
 .detail-header {
   padding-top: 4rem;
   padding-bottom: 4rem;
@@ -8494,7 +8517,7 @@ p {
 }
 @media (max-width: 767.98px) {
   .detail-header .movie-header h1 {
-    font-size: 3rem;
+    font-size: 2rem;
   }
 }
 .detail-header .movie-header h4 {
@@ -8564,6 +8587,13 @@ p {
 .counter-btn-container button:focus, .counter-btn-container button:hover {
   color: white;
   box-shadow: none;
+}
+
+.event-description ul {
+  list-style: none;
+}
+.event-description ul li {
+  display: block !important;
 }
 
 .our-partners {
@@ -8850,7 +8880,7 @@ p {
 }
 @media (max-width: 575.98px) {
   .contact-form .form-content .form-col {
-    padding: 1.4rem;
+    padding: 1rem;
   }
 }
 .contact-form .form-content .form-col .form-group {
@@ -8859,6 +8889,78 @@ p {
 .contact-form .form-content .form-col .form-group .form-control {
   background-color: transparent;
   color: white;
+}
+.contact-form .form-content .form-col .form-group .accordion {
+  background: transparent;
+}
+.contact-form .form-content .form-col .form-group .accordion .accordion-item {
+  background: transparent;
+  border-color: #D8D8D8;
+}
+.contact-form .form-content .form-col .form-group .accordion .accordion-button {
+  color: #D8D8D8;
+  display: flex;
+  justify-content: space-between;
+  background: transparent;
+}
+@media (max-width: 767.98px) {
+  .contact-form .form-content .form-col .form-group .accordion .accordion-button {
+    padding: 1rem 0.75rem;
+  }
+}
+.contact-form .form-content .form-col .form-group .accordion .accordion-button::after {
+  background-image: none;
+  width: 0;
+  height: 0;
+  display: none;
+}
+.contact-form .form-content .form-col .form-group .accordion .accordion-button span {
+  display: inline-block;
+  width: 100%;
+}
+.contact-form .form-content .form-col .form-group .accordion .accordion-button .provider-image {
+  display: flex;
+  margin-left: 1rem;
+  justify-content: flex-end;
+}
+.contact-form .form-content .form-col .form-group .accordion .accordion-button .provider-image img {
+  height: 2rem;
+  margin-right: 1rem;
+  border-radius: 0.25rem;
+}
+.contact-form .form-content .form-col .form-group .accordion .accordion-button .provider-image img:last-child {
+  margin-right: 0;
+}
+@media (max-width: 767.98px) {
+  .contact-form .form-content .form-col .form-group .accordion .accordion-body {
+    padding: 1rem 0.75rem;
+  }
+}
+@media (max-width: 575.98px) {
+  .contact-form .form-content .form-col .form-group .accordion .accordion-body .row .col {
+    padding-right: 0.25rem;
+    padding-left: 0.25rem;
+  }
+  .contact-form .form-content .form-col .form-group .accordion .accordion-body .row .col:first-child {
+    padding-left: calc(var(--bs-gutter-x) * 0.5);
+  }
+  .contact-form .form-content .form-col .form-group .accordion .accordion-body .row .col:last-child {
+    padding-right: calc(var(--bs-gutter-x) * 0.5);
+  }
+}
+.contact-form .form-content .form-col .form-group .accordion .accordion-body .card-input {
+  letter-spacing: 0.5rem;
+}
+@media (max-width: 767.98px) {
+  .contact-form .form-content .form-col .form-group .accordion .accordion-body .card-input {
+    letter-spacing: 0.25rem;
+  }
+}
+@media (max-width: 575.98px) {
+  .contact-form .form-content .form-col .form-group .accordion .accordion-body .card-input {
+    letter-spacing: unset;
+    padding: 0.25rem 0.5rem;
+  }
 }
 
 .terms-main {
@@ -8883,6 +8985,18 @@ p {
   font-size: 1.15rem;
   color: #2c368b;
   margin-bottom: 0.25rem;
+}
+
+.footer {
+  background: #171717;
+  border-top-right-radius: 100px;
+  font-size: 1rem;
+  padding: 3rem 3rem 1rem;
+}
+@media (max-width: 575.98px) {
+  .footer {
+    padding: 1.5rem 1.5rem 1rem;
+  }
 }
 
 body {

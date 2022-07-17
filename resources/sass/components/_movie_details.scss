@@ -37,17 +37,6 @@
 
 }
 
-.event-description {
-    ul {
-        list-style: none;
-
-        li {
-            display: block !important;
-        }
-
-    }
-}
-
 .detail-header {
 
     .movie-header {
@@ -56,7 +45,7 @@
             text-shadow: 1px 5px 5px black;
 
             @include media-breakpoint-down(md) {
-                font-size: 3rem;
+                font-size: 2rem;
             }
         }
 
@@ -144,3 +133,16 @@
         }
     }
 }
+
+
+.event-description {
+    ul {
+        list-style: none;
+
+        li {
+            display: block !important;
+        }
+
+    }
+}
+

@@ -13,6 +13,7 @@
 
         .carousel-item {
             height: 43rem;
+
             @include media-breakpoint-down(lg) {
                 height: 45vh;
             }
@@ -21,6 +22,19 @@
             }
             @include media-breakpoint-down(sm) {
                 height: 25vh;
+            }
+
+            &, &.event-page {
+                height: 30rem;
+                @include media-breakpoint-down(lg) {
+                    height: 45vh;
+                }
+                @include media-breakpoint-down(md) {
+                    height: 35vh;
+                }
+                @include media-breakpoint-down(sm) {
+                    height: 25vh;
+                }
             }
 
             overflow: hidden;

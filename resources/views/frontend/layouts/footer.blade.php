@@ -10,7 +10,7 @@
                     <img src="{{asset('main-logo.png')}}" style="height: 8rem" alt="{{config('app.name')}}"/>
                 </div>
                 <h3 class="mt-3">Hait Entertainment</h3>
-                <p class="d-block mt-2"> Hassle Free Movie Ticketing <br> at your finger tips</p>
+                <p class="d-block mt-2"> Hassle Free Ticketing <br> at your finger tips</p>
                 <div class="tnc-container mt-2 text-sm">
                     <a class="underline d-block" href="{{url('terms-and-condition')}}">Terms and Condition</a>
                     <a class="underline mt-1 d-block" href="{{url('privacy-policy')}}">Privacy Policy</a>

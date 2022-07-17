@@ -62,9 +62,8 @@
                                         <div><h4> $ {{number_format($total,1)}}</h4></div>
                                     </div>
                                 </div>
-                                <small class="m-1">Note: Qr Code will be send on your email after verifying your
-                                    payment.</small>
-
+                                <p class="mt-3 fs-6">Note: Qr Code will be sent on your email after verifying your
+                                    payment.</p>
                             </div>
                         </div>
                         <div class="col mt-4 mt-lg-0">
@@ -80,12 +79,52 @@
                                     </div>
                                     <div class="form-group">
                                         <label>Phone*</label>
-                                        <input type="text" placeholder="9XXXXXXXXX" class="form-control">
+                                        <input type="text" placeholder="04XXXXXXXX" class="form-control">
                                     </div>
                                     <div class="form-group">
-                                        <label>Message*</label>
-                                        <textarea class="form-control" rows="3"
-                                                  draggable="false"></textarea>
+                                        <label class="d-block mb-3">Payment Option*</label>
+                                        <div class="accordion">
+                                            <div class="accordion-item">
+                                                <h2 class="accordion-header" id="flush-headingOne">
+                                                    <button class="accordion-button collapsed" type="button">
+                                                        <span>Credit and Debit Cards</span>
+                                                        <span class="provider-image">
+                                                            <img src="{{asset('images/master-card.jpg')}}"
+                                                                 alt="Master Card ">
+                                                            <img src="{{asset('images/visa.jpg')}}"
+                                                                 alt="Visa Card Payment">
+                                                        </span>
+                                                    </button>
+                                                </h2>
+                                                <div id="flush-collapseOne" class="accordion-collapse collapse show"
+                                                     aria-labelledby="flush-headingOne"
+                                                     data-bs-parent="#accordionFlushExample">
+                                                    <div class="accordion-body">
+                                                        <div class="form-group">
+                                                            <label>Cardholder Name*</label>
+                                                            <input type="text" placeholder="e.g. John E Cash" class="form-control">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>Card Number*</label>
+                                                            <input type="email" placeholder="16-digit card number"
+                                                                   class="form-control">
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <div class="col-8">
+                                                                <label>Expiry Date*</label>
+                                                                <input type="number" placeholder="MM/YYYY"
+                                                                       class="form-control">
+                                                            </div>
+                                                            <div class="col-4">
+                                                                <label>CVV*</label>
+                                                                <input type="number" placeholder="XXX"
+                                                                       class="form-control" max="999">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="form-group">
                                         <button class="btn-primary btn px-4 d-flex align-items-center">

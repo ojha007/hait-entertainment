@@ -5,7 +5,7 @@
         <section id="home" class="hero-section">
             <div id="demo2" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
-                    <div class="carousel-item active">
+                    <div class="carousel-item event-page active">
                         <div class="img-container">
                             <img src="./img/movies/thor-md.jpg" alt="user registered">
                         </div>
@@ -72,7 +72,8 @@
                                     </a>
                                     <h4>{{$event->title}}</h4>
                                     <div class="d-flex">
-                                        <a href="{{route('events.show',$event->id)}}" class="btn btn-md btn-primary">Buy tickets</a>
+                                        <a href="{{route('events.show',$event->id)}}" class="btn btn-md btn-primary">Buy
+                                            tickets</a>
                                     </div>
                                 </div>
                             </div>
