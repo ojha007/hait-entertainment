@@ -87,7 +87,7 @@
                                             <div class="accordion-item">
                                                 <h2 class="accordion-header" id="flush-headingOne">
                                                     <button class="accordion-button collapsed" type="button">
-                                                        <span>Credit and Debit Cards</span>
+                                                        <span>Credit/Debit Cards</span>
                                                         <span class="provider-image">
                                                             <img src="{{asset('images/master-card.jpg')}}"
                                                                  alt="Master Card ">
@@ -102,23 +102,26 @@
                                                     <div class="accordion-body">
                                                         <div class="form-group">
                                                             <label>Cardholder Name*</label>
-                                                            <input type="text" placeholder="e.g. John E Cash" class="form-control">
+                                                            <input type="text" placeholder="e.g. John E Cash"
+                                                                   class="form-control">
                                                         </div>
                                                         <div class="form-group">
                                                             <label>Card Number*</label>
-                                                            <input type="email" placeholder="16-digit card number"
+                                                            <input type="number" id="cc"
+                                                                   placeholder="16-digit card number"
+                                                                   maxlength="16"
                                                                    class="form-control">
                                                         </div>
                                                         <div class="form-group row">
                                                             <div class="col-8">
                                                                 <label>Expiry Date*</label>
-                                                                <input type="number" placeholder="MM/YYYY"
+                                                                <input type="text" maxlength="7" placeholder="MM/YYYY"
                                                                        class="form-control">
                                                             </div>
                                                             <div class="col-4">
                                                                 <label>CVV*</label>
                                                                 <input type="number" placeholder="XXX"
-                                                                       class="form-control" max="999">
+                                                                       class="form-control" max="999" maxlength="3">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -141,3 +144,31 @@
     </main>
     @include('frontend.layouts.footer')
 @endsection
+
+@push('scripts')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/inputmask/4.0.9/jquery.inputmask.bundle.min.js"></script>
+    <script>
+        function ccExpiryInputInputHandler(e) {
+            let el = e.target,
+                newValue = el.value;
+
+            newValue = unmask(newValue);
+            if (newValue.match(ccExpiryPattern)) {
+                newValue = mask(newValue, 2, ccExpirySeparator);
+                el.value = newValue;
+            } else {
+                el.value = ccExpiryInputOldValue;
+            }
+        }
+
+        $('#cc').inputmask({
+            mask: '(3(4|7)99 9{6} 9{5}|3999 9{4} 9{4} 9{4}|9{4} 9{4} 9{4} 9{4})'
+        }).change(function () {
+            let value = $(this).val().substr(0, 2);
+            $('#vv').inputmask({
+                mask: (value === 34 || value === 37) ? '9{4}' : '9{3}'
+            });
+        });
+    </script>
+@endpush
