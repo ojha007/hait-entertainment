@@ -41,7 +41,7 @@
                         <div class="mt-5 border rounded-3 p-3">
                             <div class="d-flex justify-content-between align-items-start mt-3">
                                 <h2>Select your desired ticket.</h2>
-                                <button class="btn btn-outline-primary btn-md" type="submit">Buy Ticket</button>
+                                <button class="btn btn-primary btn-md" type="submit">Buy Ticket</button>
                             </div>
                             @foreach($event->pricing as $pricing)
                                 <div class="d-flex justify-content-between align-items-start mt-3">
@@ -106,7 +106,7 @@
                                     {{\Carbon\Carbon::parse($event->time)->format('h:i A')}}
                                 </p>
                                 <div class="d-flex">
-                                    <button class="btn btn-md btn-outline-primary">Buy tickets</button>
+                                    <button class="btn btn-md btn-primary">Buy tickets</button>
                                 </div>
                             </div>
                         </div>

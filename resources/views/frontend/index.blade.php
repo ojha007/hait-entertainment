@@ -99,7 +99,7 @@
                                     </p>
                                     <div class="d-flex">
                                         <a href="{{route('events.show',$event->id)}}"
-                                           class="btn btn-md btn-outline-primary">
+                                           class="btn btn-md btn-primary">
                                             Buy Tickets</a>
                                     </div>
                                 </div>

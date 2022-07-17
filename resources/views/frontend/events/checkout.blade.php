@@ -6,6 +6,7 @@
             <div class="services-heading align-items-center">
                 <h1>Check Out</h1>
                 <p class="text-center">Make sure you provide true information while doing checkout.</p>
+                <small class="mb-1">Qr Code will be send on your email.After verifying your payment information.</small>
                 <div class="heading-underline"></div>
                 <div class="container">
                     <div class="form-content row row-cols-1 row-cols-lg-2 bg-dark rounded-3  mt-4">

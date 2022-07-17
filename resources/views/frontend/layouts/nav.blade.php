@@ -26,7 +26,7 @@
                     <li><a href="{{url('contact-us')}}"
                            class="{{request()->routeIs('contactUs') ? 'active':""}} btn btn-sm">Contact</a>
                     </li>
-                    <a href="{{url('login')}}" class="btn btn-sm btn-outline-primary">Organizer
+                    <a href="{{url('login')}}" class="btn btn-sm btn-primary">Organizer
                         Desk</a>
                 </ul>
             </div>
