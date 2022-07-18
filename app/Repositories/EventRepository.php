@@ -64,6 +64,10 @@ class EventRepository extends Repository
     }
 
 
+    /**
+     * @param $size
+     * @return mixed
+     */
     public function upcomingEvents($size)
     {
         return $this->getModel()
@@ -72,4 +76,36 @@ class EventRepository extends Repository
             ->paginate($size);
     }
 
+    /**
+     * @param $id
+     * @param array $requestPricing
+     * @return array
+     */
+    public function calculatePrice($id, array $requestPricing = []): array
+    {
+        $data = ['event' => null, 'total' => 0];
+        $data['event'] = $this->getWith($id, 'pricing', 'pricing.ticket');
+        foreach ($data['event']->pricing as $pricing) {
+            if (array_key_exists($pricing->id, $requestPricing)) {
+                $data['total'] += $pricing->rate * $requestPricing[$pricing->id];
+            }
+        }
+        return $data;
+    }
+
+
+    /**
+     * @return mixed
+     */
+    public function selectEvents()
+    {
+        return $this->getModel()
+            ->orderByDesc('date')
+            ->get()
+            ->mapWithKeys(function ($event) {
+                return [
+                    $event->id => $event->title
+                ];
+            });
+    }
 }

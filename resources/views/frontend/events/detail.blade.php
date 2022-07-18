@@ -39,33 +39,43 @@
                         {!! Form::open(['route'=>['events.checkOut',$event->id],'method'=>'POST']) !!}
 
                         <div class="mt-5 border rounded-3 p-3">
-                            <div class="d-flex justify-content-between align-items-start mt-3">
-                                <h2>Select your desired ticket.</h2>
-                                <button class="btn btn-primary btn-md" type="submit">Buy Ticket</button>
-                            </div>
-                            @foreach($event->pricing as $pricing)
+                            @foreach($event->pricing as $key=>$pricing)
+                                @php($availableSeat = $pricing->availableSeat($pricing->ticket_type_id))
+                                @if($key==0)
+                                    <div class="d-flex justify-content-between align-items-start mt-3">
+                                        <h2>Select your desired ticket.</h2>
+                                        <button class="btn btn-primary btn-md" type="submit">Buy Ticket</button>
+                                    </div>
+                                @endif
+                                @if($availableSeat < 1)
+                                    <div class="d-flex justify-content-end align-items-end mt-3">
+                                        <p class="badge bg-danger p-2">Sold Out </p>
+                                    </div>
+                                @endif
                                 <div class="d-flex justify-content-between align-items-start mt-3">
                                     <div>
                                         <h3>{{$pricing->ticket->name}}</h3>
                                         <h4 class="text-gray-500 mt-3">Per Ticket: ${{$pricing->rate}}</h4>
                                     </div>
-                                    <div>
-                                        <div class="counter-btn-container mt-3">
-                                            <div class="input-group seatRate" data-rate="{{$pricing->rate}}">
-                                                <div class="input-group-prepend">
-                                                    <button class="btn btn-sm btn-minus pt-2" type="button">
-                                                        <i class="ic-minus"></i>
-                                                    </button>
-                                                </div>
-                                                {!! Form::number('pricing['.$pricing->id.']',0,['class'=>'form-control seatSelected','min'=>'0','style'=>'width:55px']) !!}
-                                                <div class="input-group-append">
-                                                    <button class="btn btn-sm btn-plus pt-2" type="button">
-                                                        <i class="ic-plus"></i>
-                                                    </button>
+                                    @if($availableSeat > 0)
+                                        <div>
+                                            <div class="counter-btn-container mt-3">
+                                                <div class="input-group seatRate" data-rate="{{$pricing->rate}}">
+                                                    <div class="input-group-prepend">
+                                                        <button class="btn btn-sm btn-minus pt-2" type="button">
+                                                            <i class="ic-minus"></i>
+                                                        </button>
+                                                    </div>
+                                                    {!! Form::number('pricing['.$pricing->id.']',0,['class'=>'form-control seatSelected','min'=>'0','style'=>'width:55px','max'=>$availableSeat]) !!}
+                                                    <div class="input-group-append">
+                                                        <button class="btn btn-sm btn-plus pt-2" type="button">
+                                                            <i class="ic-plus"></i>
+                                                        </button>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    @endif
                                 </div>
                             @endforeach
                             {!! Form::close() !!}

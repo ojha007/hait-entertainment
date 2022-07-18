@@ -55,14 +55,19 @@ class HomeController extends Controller
     public function checkOut(Request $request, $id)
     {
         $repo = (new EventRepository(new Event()));
-        $event = $repo->getWith($id, 'pricing', 'pricing.ticket');
         $requestPricing = $request->get('pricing') ?? [];
-        $total = 0;
-        foreach ($event->pricing as $pricing) {
-            if (array_key_exists($pricing->id, $requestPricing)) {
-                $total += $pricing->rate * $requestPricing[$pricing->id];
-            }
+        $data = $repo->calculatePrice($id, $requestPricing);
+        $event = $data['event'];
+        $total = $data['total'];
+        if ($total < 1) {
+            return redirect()
+                ->back()
+                ->with('error', 'Amount cannot be less than one.');
         }
-        return view('frontend.events.checkout', compact('event', 'requestPricing', 'total'));
+
+        $paymentMethod = ['paypal' => 'Paypal', 'card' => 'Debit/Credit Card'];
+        return view('frontend.events.checkout', compact('event', 'requestPricing', 'total', 'paymentMethod'));
     }
+
+
 }

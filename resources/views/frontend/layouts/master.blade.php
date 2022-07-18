@@ -22,8 +22,9 @@
 </head>
 <body>
 <div id="app"></div>
+@include('toast')
 @yield('content')
-{{--<script src="{{asset('js/app.js')}}" defer></script>--}}
+<script src="{{asset('js/app.js')}}" defer></script>
 <script src="{{asset('js/frontend.js')}}" defer></script>
 <script>
     document.getElementById("footer-date").innerText = new Date().getFullYear();

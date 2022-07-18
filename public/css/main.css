@@ -9004,3 +9004,7 @@ body {
   color: #D8D8D8;
   font-family: "Poppins", sans-serif;
 }
+
+option {
+  background-color: #4f4f4f;
+}

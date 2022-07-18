@@ -15,15 +15,15 @@ class CreateBookingsTable extends Migration
     {
         Schema::create('bookings', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('event_id');
-            $table->foreign('event_id')->references('id')->on('events');
-            $table->unsignedBigInteger('ticket_type_id');
-            $table->foreign('ticket_type_id')->references('id')->on('ticket_types');
+            $table->unsignedBigInteger('event_ticket_id');
+            $table->foreign('event_ticket_id')->references('id')->on('event_tickets');
             $table->integer('seat_quantity');
             $table->integer('price');
             $table->text('email');
             $table->text('name');
             $table->text('phone');
+            $table->text('payer_id')->nullable();
+            $table->text('token_id')->nullable();
             $table->boolean('is_paid')->default(false);
             $table->timestamps();
         });

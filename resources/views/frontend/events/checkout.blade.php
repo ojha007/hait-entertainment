@@ -8,6 +8,8 @@
                 <p class="text-center">Make sure you provide true information while doing checkout.</p>
                 <div class="heading-underline"></div>
                 <div class="container">
+                    {!! Form::open(['route' =>['processTransaction',$event->id],'method'=>'post']) !!}
+
                     <div class="form-content row row-cols-1 row-cols-lg-2 bg-dark rounded-3  mt-4">
                         <div class="col info-col">
                             <div class="h-100 d-flex flex-column">
@@ -39,19 +41,22 @@
                                                     </h4>
                                                 </div>
                                                 <div class="counter-btn-container mt-3">
-                                                    <div class="input-group seatRate" data-rate="{{$pricing->rate}}">
-                                                        <div class="input-group-prepend">
-                                                            <button class="btn btn-sm btn-minus pt-2" type="button">
-                                                                <i class="ic-minus"></i>
-                                                            </button>
+                                                    @if($pricing->availableSeat($pricing->ticket_type_id) > 0)
+                                                        <div class="input-group seatRate"
+                                                             data-rate="{{$pricing->rate}}">
+                                                            <div class="input-group-prepend">
+                                                                <button class="btn btn-sm btn-minus pt-2" type="button">
+                                                                    <i class="ic-minus"></i>
+                                                                </button>
+                                                            </div>
+                                                            {!! Form::number('pricing['.$pricing->id.']',$requestPricing[$pricing->id],['class'=>'form-control seatSelected','min'=>'0','style'=>'width:55px']) !!}
+                                                            <div class="input-group-append">
+                                                                <button class="btn btn-sm btn-plus pt-2" type="button">
+                                                                    <i class="ic-plus"></i>
+                                                                </button>
+                                                            </div>
                                                         </div>
-                                                        {!! Form::number('pricing['.$pricing->id.']',$requestPricing[$pricing->id],['class'=>'form-control seatSelected','min'=>'0','style'=>'width:55px']) !!}
-                                                        <div class="input-group-append">
-                                                            <button class="btn btn-sm btn-plus pt-2" type="button">
-                                                                <i class="ic-plus"></i>
-                                                            </button>
-                                                        </div>
-                                                    </div>
+                                                    @endif
                                                 </div>
                                             </div>
                                         @endif
@@ -66,22 +71,35 @@
                                     payment.</p>
                             </div>
                         </div>
+
                         <div class="col mt-4 mt-lg-0">
+                            @foreach($requestPricing as $key=>$seat)
+                                <input type="hidden" name="ticket_type_id[]" value="{{$key}}">
+                                <input type="hidden" name="seat[]" value="{{$seat}}">
+                            @endforeach
                             <div class="form-col">
                                 <form class="w-100">
                                     <div class="form-group">
                                         <label>Name*</label>
-                                        <input type="text" placeholder="Your Name" class="form-control">
+                                        <input type="text" name="name" placeholder="Your Name" class="form-control"
+                                               required>
                                     </div>
                                     <div class="form-group">
                                         <label>Email*</label>
-                                        <input type="email" placeholder="example@example.com" class="form-control">
+                                        <input type="email" placeholder="example@example.com" class="form-control"
+                                               name="email"
+                                               required>
                                     </div>
                                     <div class="form-group">
                                         <label>Phone*</label>
-                                        <input type="text" placeholder="04XXXXXXXX" class="form-control">
+                                        <input type="text" placeholder="04XXXXXXXX" class="form-control" required
+                                               name="phone">
                                     </div>
                                     <div class="form-group">
+                                        <label>Payment Method *</label>
+                                        {!! Form::select('payment_method',$paymentMethod,null,['placeholder'=>'Select Payment Method','class'=>'form-control','required']) !!}
+                                    </div>
+                                    <div class="form-group card-payment" hidden>
                                         <label class="d-block mb-3">Payment Option*</label>
                                         <div class="accordion">
                                             <div class="accordion-item">
@@ -110,18 +128,24 @@
                                                             <input type="number" id="cc"
                                                                    placeholder="16-digit card number"
                                                                    maxlength="16"
-                                                                   class="form-control">
+                                                                   class="form-control"
+
+                                                            >
                                                         </div>
                                                         <div class="form-group row">
                                                             <div class="col-8">
                                                                 <label>Expiry Date*</label>
-                                                                <input type="text" maxlength="7" placeholder="MM/YYYY"
-                                                                       class="form-control">
+                                                                <input type="text" maxlength="7" id='expires'
+                                                                       placeholder="MM/YYYY"
+                                                                       class="form-control"
+
+                                                                >
                                                             </div>
                                                             <div class="col-4">
                                                                 <label>CVV*</label>
                                                                 <input type="number" placeholder="XXX"
-                                                                       class="form-control" max="999" maxlength="3">
+                                                                       class="form-control" maxlength="3"
+                                                                >
                                                             </div>
                                                         </div>
                                                     </div>
@@ -130,15 +154,18 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <button class="btn-primary btn px-4 d-flex align-items-center">
+                                        <button class="btn-primary btn px-4 d-flex align-items-center" type="submit">
                                             <span>Checkout </span><i
                                                 class="ic-caret-right ml-2"></i></button>
                                     </div>
                                 </form>
                             </div>
                         </div>
+
                     </div>
+                    {!! Form::close() !!}
                 </div>
+
             </div>
         </section>
     </main>
@@ -148,27 +175,25 @@
 @push('scripts')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/inputmask/4.0.9/jquery.inputmask.bundle.min.js"></script>
+    <script src="https://www.paypal.com/sdk/js?client-id={{ env('PAYPAL_SANDBOX_CLIENT_ID') }}"></script>
     <script>
-        function ccExpiryInputInputHandler(e) {
-            let el = e.target,
-                newValue = el.value;
-
-            newValue = unmask(newValue);
-            if (newValue.match(ccExpiryPattern)) {
-                newValue = mask(newValue, 2, ccExpirySeparator);
-                el.value = newValue;
-            } else {
-                el.value = ccExpiryInputOldValue;
-            }
-        }
-
-        $('#cc').inputmask({
-            mask: '(3(4|7)99 9{6} 9{5}|3999 9{4} 9{4} 9{4}|9{4} 9{4} 9{4} 9{4})'
-        }).change(function () {
-            let value = $(this).val().substr(0, 2);
-            $('#vv').inputmask({
-                mask: (value === 34 || value === 37) ? '9{4}' : '9{3}'
+        $(document).ready(function () {
+            $('select[name="payment_method"]').on('change', function () {
+                let val = $(this).val();
+                if (val === 'card') {
+                    $('.card-payment').removeAttr('hidden');
+                } else {
+                    $('.card-payment').attr('hidden', 'hidden');
+                }
             });
-        });
+            let dt = new Date();
+            dt = (dt.getMonth() + 1) + "/" + dt.getFullYear();
+            $('#expires').inputmask({
+                alias: 'datetime',
+                inputFormat: 'mm/yyyy',
+                placeholder: "__/____",
+                min: dt,
+            });
+        })
     </script>
 @endpush

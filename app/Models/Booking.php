@@ -8,6 +8,6 @@ class Booking extends Model
 {
 
     protected $table = 'bookings';
-    protected $fillable = ['event_id', 'ticket_type_id', 'seat_quantity', 'name', 'email', 'phone'];
+    protected $fillable = ['event_ticket_id', 'seat_quantity', 'name', 'email', 'phone', 'payer_id', 'token_id'];
 
 }
