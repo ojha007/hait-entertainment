@@ -298,22 +298,22 @@
                 <div class="row">
                     <div class="our-partners-slick-container">
                         <div class="img-container">
-                            <img src="./img/sponsor-20.jpg" alt="">
+                            <img src="{{asset('images/sponsor-20.jpg')}}" alt="">
                         </div>
                         <div class="img-container">
-                            <img src="./img/partner-11.jpg" alt="">
+                            <img src="{{asset('images/partner-11.jpg')}}" alt="">
                         </div>
                         <div class="img-container">
-                            <img src="./img/sponsor-20.jpg" alt="">
+                            <img src="{{asset('images/sponsor-20.jpg')}}" alt="">
                         </div>
                         <div class="img-container">
-                            <img src="./img/partner-11.jpg" alt="">
+                            <img src="{{asset('images/partner-11.jpg')}}" alt="">
                         </div>
                         <div class="img-container">
-                            <img src="./img/sponsor-20.jpg" alt="">
+                            <img src="{{asset('images/sponsor-20.jpg')}}" alt="">
                         </div>
                         <div class="img-container">
-                            <img src="./img/partner-11.jpg" alt="">
+                            <img src="{{asset('images/partner-11.jpg')}}" alt="">
                         </div>
                     </div>
                 </div>
