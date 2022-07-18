@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\BookingConfirmedMail;
 use App\Models\Event;
 use App\Repositories\EventRepository;
 use App\Repositories\PaypalPaymentRepository;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use Throwable;
 
@@ -33,6 +35,9 @@ class PaymentController extends Controller
         if (isset($session) && count($session)) {
             $data = route('internal.bookings.checkIn', $session['0']['token_id']);
             $qrCode = QrCode::size(250)->generate($data);
+            if ($session[0]['email']) {
+                Mail::to($session[0]['email'])->queue(new BookingConfirmedMail($qrCode));
+            }
             return view('frontend.payments.received', compact('qrCode'));
         } else {
             return view('frontend.payments.failed');
@@ -58,7 +63,7 @@ class PaymentController extends Controller
                 ->with('error', 'Amount should be greater than 0.');
         }
         if ($request->get('payment_method') === 'paypal') {
-            $attributes = $request->except('_token','pricing');
+            $attributes = $request->except('_token', 'pricing');
             $attributes['event_id'] = $id;
             $attributes['id'] = $id;
             $attributes['amount'] = $pricing['total'];

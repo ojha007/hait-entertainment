@@ -51,16 +51,18 @@ class PayPalController extends Controller
             if (isset($response['status']) && $response['status'] == 'COMPLETED') {
                 foreach ($request->get('ticket_type_id') as $key => $data) {
                     if ($request->get('seat')[$key] > 0) {
-                        $toSave[$key]['event_ticket_id'] = $data;
-                        $toSave[$key]['seat_quantity'] = $request->get('seat')[$key];
-                        $toSave[$key]['payer_id'] = $request->get('PayerID');
-                        $toSave[$key]['token_id'] = $request->get('token');
-                        $toSave[$key]['is_paid'] = 1;
-                        $toSave[$key]['created_at'] = now();
-                        $toSave[$key]['updated_at'] = now();
-                        $toSave[$key]['name'] = $request->get('name');
-                        $toSave[$key]['email'] = $request->get('email');
-                        $toSave[$key]['phone'] = $request->get('phone');
+                        $toSave[] = [
+                            'event_ticket_id' => $data,
+                            'seat_quantity' => $request->get('seat')[$key],
+                            'payer_id' => $request->get('PayerID'),
+                            'token_id' => $request->get('token'),
+                            'is_paid' => 1,
+                            'created_at' => now(),
+                            'updated_at' => now(),
+                            'name' => $request->get('name'),
+                            'email' => $request->get('email'),
+                            'phone' => $request->get('phone')
+                        ];
                     }
                 }
                 Booking::insert($toSave);
