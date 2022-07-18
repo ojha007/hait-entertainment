@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\BookingConfirmedMail;
+use App\Mail\BookingConfirmed;
 use App\Models\Event;
 use App\Repositories\EventRepository;
 use App\Repositories\PaypalPaymentRepository;
@@ -36,7 +36,7 @@ class PaymentController extends Controller
             $data = route('internal.bookings.checkIn', $session['0']['token_id']);
             $qrCode = QrCode::size(250)->generate($data);
             if ($session[0]['email']) {
-                Mail::to($session[0]['email'])->queue(new BookingConfirmedMail($qrCode));
+                Mail::to($session[0]['email'])->queue(new BookingConfirmed($qrCode));
             }
             return view('frontend.payments.received', compact('qrCode'));
         } else {

@@ -41,15 +41,10 @@
                         <div class="mt-5 border rounded-3 p-3">
                             @foreach($event->pricing as $key=>$pricing)
                                 @php($availableSeat = $pricing->availableSeat($pricing->ticket_type_id))
-                                @if($key==0)
+                                @if($key==0 && $availableSeat > 0)
                                     <div class="d-flex justify-content-between align-items-start mt-3">
                                         <h2>Select your desired ticket.</h2>
                                         <button class="btn btn-primary btn-md" type="submit">Buy Ticket</button>
-                                    </div>
-                                @endif
-                                @if($availableSeat < 1)
-                                    <div class="d-flex justify-content-end align-items-end mt-3">
-                                        <p class="badge bg-danger p-2">Sold Out </p>
                                     </div>
                                 @endif
                                 <div class="d-flex justify-content-between align-items-start mt-3">
@@ -75,7 +70,10 @@
                                                 </div>
                                             </div>
                                         </div>
+                                    @else
+                                        <p class="badge bg-danger p-2 rounded-2">Sold Out </p>
                                     @endif
+
                                 </div>
                             @endforeach
                             {!! Form::close() !!}
