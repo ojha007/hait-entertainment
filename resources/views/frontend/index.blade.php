@@ -212,7 +212,6 @@
 
             <div class="container">
                 <div class="services-heading">
-                    <h4 class="text-primary">Frequently Asked Questions</h4>
                     <h1 class="mt-3">Have Questions? <br> <b>We are here to Help.</b></h1>
                 </div>
                 <div class="faqs-accordion ">
@@ -222,15 +221,13 @@
                                 <button class="accordion-button bg-transparent" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#collapseOne"
                                         aria-expanded="true" aria-controls="collapseOne">
-                                    WHAT IS REGISTERED REMIT ?
+                                    WHAT IS HAIT ENTERTAINMENT ?
                                 </button>
                             </h2>
                             <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
                                  data-bs-parent="#accordionExample">
                                 <div class="accordion-body">
-                                    Registered Remit is a money transfer service that ensures to provide a secure way of
-                                    sending money to
-                                    Nepal.
+                                    HAIT ENTERTAINMENT is a platform to buy a hassle free tickets.
                                 </div>
                             </div>
                         </div>
@@ -239,21 +236,14 @@
                                 <button class="accordion-button bg-transparent collapsed" type="button"
                                         data-bs-toggle="collapse"
                                         data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                    WHY SHOULD I CHOOSE REGISTERED REMIT ?
+                                    DOES IT SUPPORT ANY KIND OF DIGITAL PAYMENT ?
                                 </button>
                             </h2>
                             <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
                                  data-bs-parent="#accordionExample">
                                 <div class="accordion-body">
-                                    Registered Remit assures to provide fast, easy and reliable remittance facility. We
-                                    offer attractive
-                                    exchange rate and two hours payment in Nepal* (Fees and restriction apply. Please
-                                    visit
-                                    our T&C page).
-                                    More importantly, we believe in providing value and security to customers.
-                                    Registered
-                                    Remit definitely
-                                    guarantees to be the best choice for sending money to your loves ones in Nepal.
+                                    Hait Entertainment only accept either paypal or credit/debit card.
+                                    We discourage a cash transaction.
                                 </div>
                             </div>
                         </div>
@@ -263,21 +253,14 @@
                                         data-bs-toggle="collapse"
                                         data-bs-target="#collapseThree" aria-expanded="false"
                                         aria-controls="collapseThree">
-                                    WHY SHOULD I CHOOSE REGISTERED REMIT ?
+                                    DOES IT PROVIDE ANY PAYMENT PROOF?
                                 </button>
                             </h2>
                             <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
                                  data-bs-parent="#accordionExample">
                                 <div class="accordion-body">
-                                    Registered Remit assures to provide fast, easy and reliable remittance facility. We
-                                    offer attractive
-                                    exchange rate and two hours payment in Nepal* (Fees and restriction apply. Please
-                                    visit
-                                    our T&C page).
-                                    More importantly, we believe in providing value and security to customers.
-                                    Registered
-                                    Remit definitely
-                                    guarantees to be the best choice for sending money to your loves ones in Nepal.
+                                    After your payment succeed we will send an qr code on your email.You should bring
+                                    it while visiting the location/Venue.
                                 </div>
                             </div>
                         </div>

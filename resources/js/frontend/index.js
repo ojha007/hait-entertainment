@@ -5,7 +5,7 @@ import "bootstrap/js/src/collapse";
 import "bootstrap/js/src/dropdown";
 import "jquery";
 import "./menu";
-// import "./navigation";
+import "./navigation";
 import "slick-carousel";
 
 $(".our-partners-slick-container").slick({
