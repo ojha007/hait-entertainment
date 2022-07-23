@@ -10,6 +10,6 @@ class Carousal extends Model
 
     use SoftDeletes;
 
-    protected $fillable = ['title', 'description', 'order', 'url'];
+    protected $fillable = ['title', 'order', 'url'];
     protected $table = 'slider_images';
 }

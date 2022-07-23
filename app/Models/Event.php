@@ -9,7 +9,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Event extends Model
 {
 
-    protected $fillable = ['title', 'description', 'address', 'date', 'time', 'event_type_id', 'organizer', 'image'];
+    protected $fillable = ['title', 'description', 'address', 'date', 'time',
+        'event_type_id', 'organizer', 'banner_image', 'background_image'];
 
 
     public function pricing(): HasMany

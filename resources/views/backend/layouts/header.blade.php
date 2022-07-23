@@ -15,6 +15,7 @@
     <!-- Navbar Right Menu -->
     <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
+            @include('backend.layouts.userDropDown')
             <li>
                 <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
             </li>

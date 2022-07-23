@@ -17,7 +17,6 @@ class CreateSliderImagesTable extends Migration
             $table->id();
             $table->mediumText('title')->nullable();
             $table->float('order');
-            $table->longText('description')->nullable();
             $table->mediumText('url');
             $table->timestamps();
             $table->softDeletes();

@@ -5,6 +5,7 @@ use App\Http\Controllers\CarousalController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\EventTypeController;
+use App\Http\Controllers\PartnerController;
 use App\Http\Controllers\TicketController;
 use Illuminate\Support\Facades\Route;
 
@@ -17,5 +18,6 @@ Route::group(['middleware' => ['auth', 'web'], 'prefix' => 'internal', 'as' => '
     $route->group(['as' => 'master.', 'prefix' => 'master'], function ($router) {
         $router->resource('tickets', TicketController::class);
         $router->resource('event-types', EventTypeController::class);
+        $router->resource('partners', PartnerController::class, ['expect' => 'update', 'edit', 'show']);
     });
 });

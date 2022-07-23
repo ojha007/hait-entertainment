@@ -11,7 +11,6 @@ class CarousalRequest extends FormRequest
     {
         return [
             'title' => 'required|string',
-            'description' => 'required|string',
             'image' => 'required|image|mimes:jpg,png,webp,jpeg'
         ];
     }
