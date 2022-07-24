@@ -82,12 +82,11 @@
     {!! Form::label('description','Event Description') !!}
     {!! Form::textarea('description',null,['class'=>'form-control','id'=>'description']) !!}
 </div>
-{{----}}
 <div class="row">
     <div class="col-md-6 ">
         <div class="form-group @error('banner_image') has-error @enderror">
             {!! Form::label('upload_banner_image') !!}
-            {!! Form::file('banner_image',['class'=>'form-control','required']) !!}
+            {!! Form::file('banner_image',['class'=>'form-control', !isset($event) ? 'required':""]) !!}
             <small>This is will be displayed on the main screen.</small>
         </div>
     </div>

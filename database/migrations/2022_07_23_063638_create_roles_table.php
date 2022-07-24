@@ -34,7 +34,7 @@ class CreateRolesTable extends Migration
             }
 
         });
-        Schema::table('booking', function (Blueprint $table) {
+        Schema::table('bookings', function (Blueprint $table) {
             $table->enum('payment_mode', ['paypal', 'card']);
         });
     }

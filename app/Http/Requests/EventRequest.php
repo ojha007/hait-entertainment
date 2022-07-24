@@ -9,6 +9,7 @@ class EventRequest extends FormRequestForApi
 
     public function rules(): array
     {
+        $id = $this->route()->parameter('event');
         return [
             'title' => 'required|string|min:2',
             'description' => 'required|string',
@@ -23,7 +24,11 @@ class EventRequest extends FormRequestForApi
             'seat.*' => 'nullable|numeric',
             'address' => 'required|string',
             'event_type_id' => 'required|exists:event_types,id',
-            'banner_image' => 'required|image|mimes:jpg,png,jpeg,webp,gif,svg',
+            'banner_image' => [
+                $id ? 'nullable' : 'required',
+                'image',
+                'mimes:jpg,png,jpeg,webp,gif,svg',
+            ],
             'background_image' => 'nullable|image|mimes:jpg,png,jpeg,webp,gif,svg'
         ];
     }
