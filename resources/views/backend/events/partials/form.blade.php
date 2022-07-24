@@ -82,19 +82,22 @@
     {!! Form::label('description','Event Description') !!}
     {!! Form::textarea('description',null,['class'=>'form-control','id'=>'description']) !!}
 </div>
-<div class="form-group @error('files') has-error @enderror">
-    <div class="row">
-        <div class="col-md-6 uploaded-file-list ">
-            <label class="form-label">Upload Event Images</label>
-            <div class="file-upload mt-3" role="button">
-                <input type="file" name="image" class="d-none upload__input_file"
-                       accept="image/png,image/jpg,image/jpeg">
-                <label
-                    class="text-center">
-                    <i class="fa fa-upload"></i>
-                    <p>Drag and Drop Image here or browse your file</p>
-                </label>
-            </div>
+{{----}}
+<div class="row">
+    <div class="col-md-6 ">
+        <div class="form-group @error('banner_image') has-error @enderror">
+            {!! Form::label('upload_banner_image') !!}
+            {!! Form::file('banner_image',['class'=>'form-control','required']) !!}
+            <small>This is will be displayed on the main screen.</small>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6 ">
+        <div class="form-group @error('background_image') has-error @enderror">
+            {!! Form::label('upload_background_image') !!}
+            {!! Form::file('background_image',['class'=>'form-control']) !!}
+            <small>This is will be displayed inside the detail page of the event.</small>
         </div>
     </div>
 </div>

@@ -23,7 +23,8 @@ class EventRequest extends FormRequestForApi
             'seat.*' => 'nullable|numeric',
             'address' => 'required|string',
             'event_type_id' => 'required|exists:event_types,id',
-            'image' => 'required|image|mimes:jpg,png,jpeg,webp,gif,svg'
+            'banner_image' => 'required|image|mimes:jpg,png,jpeg,webp,gif,svg',
+            'background_image' => 'nullable|image|mimes:jpg,png,jpeg,webp,gif,svg'
         ];
     }
 

@@ -8,7 +8,10 @@
                 <p class="text-center">Make sure you provide true information while doing checkout.</p>
                 <div class="heading-underline"></div>
                 <div class="container">
-                    {!! Form::open(['route' =>['processTransaction',$event->id],'method'=>'post']) !!}
+                    {!! Form::open(['route' =>['processTransaction',$event->id],'method'=>'post',
+                                'id'=>'checkout-form',
+                                'class'=>"require-validation",
+                                ]) !!}
 
                     <div class="form-content row row-cols-1 row-cols-lg-2 bg-dark rounded-3  mt-4">
                         <div class="col info-col">
@@ -81,7 +84,8 @@
                                 <form class="w-100">
                                     <div class="form-group">
                                         <label>Name*</label>
-                                        <input type="text" name="name" placeholder="Your Name" class="form-control"
+                                        <input type="text" name="name"
+                                               placeholder="Your Name" class="form-control"
                                                required>
                                     </div>
                                     <div class="form-group">
@@ -121,30 +125,38 @@
                                                         <div class="form-group">
                                                             <label>Cardholder Name*</label>
                                                             <input type="text" placeholder="e.g. John E Cash"
-                                                                   class="form-control">
+                                                                   data-stripe="name_on_card"
+                                                                   name="name_on_card"
+                                                                   class="form-control card-field">
                                                         </div>
                                                         <div class="form-group">
                                                             <label>Card Number*</label>
-                                                            <input type="number" id="cc"
+                                                            <input type="tel"
+                                                                   inputmode="numeric"
+                                                                   pattern="[0-9\s]{13,19}"
+                                                                   autocomplete="cc-number"
+                                                                   name="card_number"
                                                                    placeholder="16-digit card number"
                                                                    maxlength="16"
-                                                                   class="form-control"
-
+                                                                   class="form-control card-field"
                                                             >
                                                         </div>
                                                         <div class="form-group row">
-                                                            <div class="col-8">
-                                                                <label>Expiry Date*</label>
-                                                                <input type="text" maxlength="7" id='expires'
-                                                                       placeholder="MM/YYYY"
-                                                                       class="form-control"
-
-                                                                >
+                                                            <div class='col-4 form-group expiration required'>
+                                                                <label class='control-label'>Expiration</label>
+                                                                {!! Form::select('expiry_month',$months,null,['class'=>'form-control']) !!}
+                                                            </div>
+                                                            <div class='col-4 form-group expiration required'>
+                                                                <label class='control-label'>YEAR</label>
+                                                                {!! Form::select('expiry_year',$years,null,['class'=>'form-control']) !!}
                                                             </div>
                                                             <div class="col-4">
-                                                                <label>CVV*</label>
-                                                                <input type="number" placeholder="XXX"
-                                                                       class="form-control" maxlength="3"
+                                                                <label>CVC*</label>
+                                                                <input type="tel" placeholder="XXX"
+                                                                       name="cvc"
+                                                                       inputmode="numeric"
+                                                                       class="form-control card-field"
+                                                                       maxlength="3"
                                                                 >
                                                             </div>
                                                         </div>
@@ -154,7 +166,8 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <button class="btn-primary btn px-4 d-flex align-items-center" type="submit">
+                                        <button class="btn-primary btn px-4 d-flex align-items-center submitButton"
+                                                type="submit">
                                             <span>Checkout </span><i
                                                 class="ic-caret-right ml-2"></i></button>
                                     </div>
@@ -164,6 +177,7 @@
 
                     </div>
                     {!! Form::close() !!}
+
                 </div>
 
             </div>
@@ -171,13 +185,56 @@
     </main>
     @include('frontend.layouts.footer')
 @endsection
-
 @push('scripts')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/inputmask/4.0.9/jquery.inputmask.bundle.min.js"></script>
+    {{--    <script src="https://cdnjs.cloudflare.com/ajax/libs/inputmask/4.0.9/jquery.inputmask.bundle.min.js"></script>--}}
+    <script src="{{asset('js/jquery.validate.min.js')}}"></script>
     <script src="https://www.paypal.com/sdk/js?client-id={{ env('PAYPAL_SANDBOX_CLIENT_ID') }}"></script>
+    <script src="https://js.stripe.com/v2/"></script>
+    <script src="{{asset('js/card-validator.js')}}"></script>
     <script>
+        // Handle form submission.
+        $('#checkout-form').on('submit', function (e) {
+            if ($('select[name="payment_method"]').val() === 'card') {
+                e.preventDefault();
+                let loading = true;
+                let form = $(this);
+                let cardNumber = $('input[name="card_number"]');
+                let cvc = $('input[name="cvc"]');
+                Stripe.setPublishableKey('{{config('services.stripe.key')}}');
+                Stripe.createToken({
+                    number: cardNumber.val(),
+                    cvc: cvc.val(),
+                    exp_month: $('select[name="expiry_month"]').val(),
+                    exp_year: $('select[name="expiry_year"]').val()
+                }, function (status, result) {
+                    $('.invalid-feedback').remove();
+                    if (result.error) {
+                        let error = result.error;
+                        if (error.param === 'number') {
+                            cardNumber.css('border-color', '#dc3545').focus();
+                            cardNumber.parent().append(`<div class="invalid-feedback d-block">${error.message}</span>`)
+                            return;
+                        }
+                        if (error.param === 'cvc') {
+                            cvc.css('border-color', '#dc3545').focus();
+                            cvc.parent().append(`<div class="invalid-feedback d-block" >${error.message}</span>`)
+                            return;
+                        }
+                        loading = false;
+                    } else {
+                        form.append('<input type="hidden" name="stripeToken" value="' + result.id + '">')
+                        form.submit();
+                    }
+                });
+            }
+        });
         $(document).ready(function () {
+
+            $('.card-field').on('change', function () {
+                cardValidation()
+            });
+
             $('select[name="payment_method"]').on('change', function () {
                 let val = $(this).val();
                 if (val === 'card') {
@@ -185,14 +242,6 @@
                 } else {
                     $('.card-payment').attr('hidden', 'hidden');
                 }
-            });
-            let dt = new Date();
-            dt = (dt.getMonth() + 1) + "/" + dt.getFullYear();
-            $('#expires').inputmask({
-                alias: 'datetime',
-                inputFormat: 'mm/yyyy',
-                placeholder: "__/____",
-                min: dt,
             });
         })
     </script>

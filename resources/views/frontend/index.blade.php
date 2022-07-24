@@ -280,24 +280,11 @@
             <div class="container">
                 <div class="row">
                     <div class="our-partners-slick-container">
+                        @foreach($partners as $partner)
                         <div class="img-container">
-                            <img src="{{asset('images/sponsor-20.jpg')}}" alt="">
+                            <img src="{{asset($partner->image)}}" alt="{{$partner->name}}">
                         </div>
-                        <div class="img-container">
-                            <img src="{{asset('images/partner-11.jpg')}}" alt="">
-                        </div>
-                        <div class="img-container">
-                            <img src="{{asset('images/sponsor-20.jpg')}}" alt="">
-                        </div>
-                        <div class="img-container">
-                            <img src="{{asset('images/partner-11.jpg')}}" alt="">
-                        </div>
-                        <div class="img-container">
-                            <img src="{{asset('images/sponsor-20.jpg')}}" alt="">
-                        </div>
-                        <div class="img-container">
-                            <img src="{{asset('images/partner-11.jpg')}}" alt="">
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>

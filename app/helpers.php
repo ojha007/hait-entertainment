@@ -36,3 +36,43 @@ if (!function_exists('errorMessage')) {
         return str_replace('%s', $messages[0], $message);
     }
 }
+
+if (!function_exists('spanByStatus')) {
+
+    function spanByStatus($status, $withPull = ''): string
+    {
+
+        switch (strtolower($status)) {
+            case 'yes':
+            case '1':
+                $labelClass = 'bg-green';
+                $labelName = 'Active';
+                break;
+            case 'no';
+            case '0':
+                $labelClass = 'bg-yellow';
+                $labelName = 'Inactive';
+                break;
+            case 'pending':
+                $labelClass = 'bg-yellow';
+                $labelName = $status;
+                break;
+            case 'verified':
+            case 'approved':
+            case 'accepted':
+                $labelClass = 'bg-green';
+                $labelName = $status;
+                break;
+            case 'rejected':
+                $labelClass = 'bg-red';
+                $labelName = $status;
+                break;
+            default:
+                $labelClass = 'bg-blue';
+                $labelName = $status;
+        }
+        return '<span style="cursor: default;"
+        class="label btn btn-flat  ' . $labelClass . ' ' . ($withPull) . '">'
+            . ucfirst($labelName) . '</span>';
+    }
+}

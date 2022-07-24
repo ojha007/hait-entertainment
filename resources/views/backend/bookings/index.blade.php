@@ -9,8 +9,9 @@
     Event
 @endsection
 @section('content')
-    <div class="box box-default">
-        @if($bookings)
+
+    @if($bookings)
+        <div class="box box-default">
             <div class="box-header with-border">
                 <h3 class="box-title">
                     All booking are listed here.
@@ -70,29 +71,35 @@
                 </div>
                 <div class="box-footer"></div>
             </div>
-        @else
-
-            <div class="box-header with-border">
-                <h3 class="box-title">
-                    Select event to view all the booking related to the event
-                </h3>
-                {!! Form::open(['route'=>'internal.bookings.index','method'=>'get']) !!}
-                <div class="box-body table-responsive">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            {!! Form::label('Select Event') !!}
-                            {!! Form::select('event_id',$events,null,['class'=>'form-control select2']) !!}
+        </div>
+    @else
+        <div class="box">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">
+                            Select event to view all the booking related to the event
+                        </h3>
+                        {!! Form::open(['route'=>'internal.bookings.index','method'=>'get']) !!}
+                        <div class="box-body table-responsive">
+                            {{--                            <div class="col-md-6">--}}
+                            <div class="form-group col-md-6">
+                                {!! Form::label('Select Event') !!}
+                                {!! Form::select('event_id',$events,null,['class'=>'form-control select2','placeholder'=>'Select Event ']) !!}
+                            </div>
+                            {{--                            </div>--}}
                         </div>
+                        <div class="box-footer">
+                            <button class="btn btn-primary btn-flat btn-md" type="submit">
+                                <i class="fa fa-filter"></i>
+                                Filter
+                            </button>
+                        </div>
+                        {!! Form::close() !!}
                     </div>
                 </div>
-                <div class="box-footer">
-                    <button class="btn btn-primary btn-flat btn-md" type="submit">
-                        <i class="fa fa-filter"></i>
-                        Filter
-                    </button>
-                </div>
-                {!! Form::close() !!}
             </div>
-        @endif
-    </div>
+        </div>
+    @endif
+
 @endsection

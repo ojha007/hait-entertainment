@@ -49,11 +49,13 @@ class EventController extends Controller
     public function store(EventRequest $request): RedirectResponse
     {
         try {
-            $attributes = $request->only('title', 'event_type_id', 'description', 'address', 'date', 'time', 'organizer');
+            $attributes = $request->only('title', 'event_type_id', 'description', 'address', 'date', 'time');
             DB::beginTransaction();
-            $attributes['image'] = $this->uploadFile($request->file('image'), 'events');
+            $attributes['created_by'] = auth()->id();
+            $attributes['updated_by'] = auth()->id();
+            $attributes['banner_image'] = $this->uploadFile($request->file('banner_image'), 'events/banners');
+            $attributes['background_image'] = $this->uploadFile($request->file('background_image'), 'events/backgrounds');
             $event = $this->repository->create($attributes);
-
             $ticketTypeIds = $request->get('ticket_type_id');
             $rates = $request->get('rate');
             $seats = $request->get('seat');
@@ -65,7 +67,7 @@ class EventController extends Controller
                 ->route($this->routePath . 'show', $event->id)
                 ->with('success', $message);
         } catch (Throwable $exception) {
-//            dd($exception);
+            dd($exception);
             DB::rollBack();
             $message = errorMessage('CREATE', 'Event');
             return redirect()

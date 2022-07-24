@@ -26,6 +26,12 @@
                 <span>Bookings</span>
             </a>
         </li>
+        <li class="{{request()->routeIs($routePrefix.'users',$routePrefix.'users.*') ? 'active' : ''}}">
+            <a href="{{route($routePrefix.'users.index')}}">
+                <i class="fa fa-users"></i>
+                <span>Users/Organizers</span>
+            </a>
+        </li>
         <li class="header">CONFIGURATION</li>
         <li class="{{request()->routeIs($masterRoute.'tickets.*') ? 'active' : ''}}">
             <a href="{{route($masterRoute.'tickets.index')}}">

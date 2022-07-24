@@ -10,7 +10,7 @@ class Event extends Model
 {
 
     protected $fillable = ['title', 'description', 'address', 'date', 'time',
-        'event_type_id', 'organizer', 'banner_image', 'background_image'];
+        'event_type_id', 'organizer_id', 'banner_image', 'background_image'];
 
 
     public function pricing(): HasMany

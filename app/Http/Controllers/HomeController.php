@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Carousal;
 use App\Models\Event;
+use App\Models\Partner;
 use App\Repositories\CarousalRepository;
 use App\Repositories\EventRepository;
+use App\Repositories\PartnerRepository;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 
@@ -29,7 +31,8 @@ class HomeController extends Controller
     {
         $sliderImages = (new CarousalRepository(new Carousal()))->getImages(3);
         $events = (new EventRepository(new Event()))->getAllEvents();
-        return view('frontend.index', compact('sliderImages', 'events'));
+        $partners = (new PartnerRepository(new Partner()))->getAll();
+        return view('frontend.index', compact('sliderImages', 'events', 'partners'));
     }
 
     public function contactUs()
@@ -54,6 +57,14 @@ class HomeController extends Controller
 
     public function checkOut(Request $request, $id)
     {
+        $months = [];
+        $years = [];
+        for ($i = date("m"); $i <= 12; $i++) {
+            $months[$i] = strlen($i) < 2 ? "0" . $i : $i;
+        }
+        for ($i = date('Y'); $i <= date('Y') + 10; $i++) {
+            $years[$i] = $i;
+        }
         $repo = (new EventRepository(new Event()));
         $requestPricing = $request->get('pricing') ?? [];
         $data = $repo->calculatePrice($id, $requestPricing);
@@ -66,7 +77,7 @@ class HomeController extends Controller
         }
 
         $paymentMethod = ['paypal' => 'Paypal', 'card' => 'Debit/Credit Card'];
-        return view('frontend.events.checkout', compact('event', 'requestPricing', 'total', 'paymentMethod'));
+        return view('frontend.events.checkout', compact('event', 'requestPricing', 'total', 'paymentMethod', 'months', 'years'));
     }
 
 
