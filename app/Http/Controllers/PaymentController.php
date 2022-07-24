@@ -96,7 +96,6 @@ class PaymentController extends Controller
                 if ($response['success']) {
                     $attributes['token'] = $attributes['stripeToken'];
                     $attributes['PayerID'] = 00;
-//                    $attributes['amount'] = $attributes['amount'] * 100;
                     $toReturn = $this->cardPaymentRepository->successTransaction($attributes);
                     return redirect()
                         ->route('paymentReceived', $id)

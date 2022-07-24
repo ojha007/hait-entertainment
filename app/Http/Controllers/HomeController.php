@@ -77,7 +77,8 @@ class HomeController extends Controller
         }
 
         $paymentMethod = ['paypal' => 'Paypal', 'card' => 'Debit/Credit Card'];
-        return view('frontend.events.checkout', compact('event', 'requestPricing', 'total', 'paymentMethod', 'months', 'years'));
+        return view('frontend.events.checkout', compact('event', 'requestPricing',
+            'total', 'paymentMethod', 'months', 'years'));
     }
 
 
