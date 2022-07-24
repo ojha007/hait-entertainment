@@ -5,6 +5,7 @@ namespace App\Repositories;
 use App\Abstracts\Repository;
 use App\Models\Booking;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 
 class BookingRepository extends Repository
@@ -53,5 +54,17 @@ class BookingRepository extends Repository
             ->where('et.event_id', '=', $eventId)
             ->orderByDesc('created_at')
             ->paginate($paginate);
+    }
+
+    public function getDetail($token): Collection
+    {
+        return DB::table('bookings as b')
+            ->select('b.name', 'email', 'phone', 'seat_quantity', 't.name as ticketType', 'e.title as eventName', 'ety.name as eventType')
+            ->join('event_tickets as et', 'b.event_ticket_id', '=', 'et.id')
+            ->join('events as e', 'e.id', '=', 'et.event_id')
+            ->join('ticket_types as t', 't.id', '=', 'et.ticket_type_id')
+            ->join('event_types as ety', 'ety.id', '=', 'e.event_type_id')
+            ->where('token_id', '=', $token)
+            ->get();
     }
 }

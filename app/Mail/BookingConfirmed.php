@@ -12,16 +12,21 @@ class BookingConfirmed extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels, InteractsWithQueue;
 
-    protected $qrCode;
+    /**
+     * @var array
+     */
+    protected $attributes;
+    private $qrCode;
 
     /**
      * Create a new message instance.
      *
+     * @param array $attributes
      * @param $qrCode
      */
-    public function __construct($qrCode)
+    public function __construct(array $attributes, $qrCode)
     {
-        //
+        $this->attributes = $attributes;
         $this->qrCode = $qrCode;
     }
 
@@ -32,6 +37,9 @@ class BookingConfirmed extends Mailable implements ShouldQueue
      */
     public function build(): BookingConfirmed
     {
-        return $this->markdown('emails.booking.confirmed', ['qrCode' => $this->qrCode]);
+        return $this->markdown('emails.booking.confirmed', [
+            'attributes' => $this->attributes,
+            'qrCode' => $this->qrCode
+        ]);
     }
 }

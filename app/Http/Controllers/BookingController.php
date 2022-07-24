@@ -56,5 +56,11 @@ class BookingController extends Controller
     {
         $bookings = $this->repository->getBookingByToken($token);
     }
+
+    public function show($id)
+    {
+        $booking = $this->repository->getDetail($id);
+        return \view($this->viewPath . 'show', compact('booking'));
+    }
 }
 

@@ -76,3 +76,16 @@ if (!function_exists('spanByStatus')) {
             . ucfirst($labelName) . '</span>';
     }
 }
+
+
+/**
+ * @param $number
+ * @return string|void
+ */
+function progressBarColor($number): string
+{
+    if ($number > 80) return 'green';
+    if ($number > 50) return 'aqua';
+    if ($number > 20) return 'yellow';
+    return '';
+}

@@ -43,7 +43,7 @@ class PaymentController extends Controller
             $data = route('internal.bookings.checkIn', $session[0]['token_id']);
             $qrCode = QrCode::size(250)->generate($data);
             if ($session[0]['email']) {
-                Mail::to($session[0]['email'])->queue(new BookingConfirmed($qrCode));
+                Mail::to($session[0]['email'])->queue(new BookingConfirmed($session[0], $qrCode));
             }
             return view('frontend.payments.received', compact('qrCode'));
         } else {
