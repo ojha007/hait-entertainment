@@ -40,6 +40,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <![endif]-->
     <link rel="stylesheet" href="{{ asset('backend/css/index.css') }}">
     <link rel="stylesheet" href="{{ asset('backend/css/custom.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css"
+          integrity="sha512-JApjWRnfonFeGBY7t4yq8SWr1A6xVYEJgO/UMIYONxaR3C9GETKUg0LharbJncEzJF5Nmiv+Pr5QNulr81LjGQ=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="https://cdn.datatables.net/1.10.23/css/dataTables.bootstrap.min.css">
     <link rel="stylesheet"

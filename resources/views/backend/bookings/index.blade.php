@@ -26,7 +26,8 @@
                                     <span
                                         class="progress-number"><b>{{$pricing->seat - $availableSeat}}</b>/{{$pricing->seat}}</span>
                                     <div class="progress sm">
-                                        <div class="progress-bar progress-bar-{{progressBarColor($bookedSeat)}}" style="width: {{$bookedSeat}}%"></div>
+                                        <div class="progress-bar progress-bar-{{progressBarColor($bookedSeat)}}"
+                                             style="width: {{$bookedSeat}}%"></div>
                                     </div>
                                 </div>
                             </div>
@@ -51,10 +52,12 @@
                         <th>Phone</th>
                         <th>Ticket Type</th>
                         <th>No of Seat</th>
-                        <th>Code</th>
+                        {{--                        <th>Code</th>--}}
+                        <th>#</th>
                     </tr>
                     </thead>
                     <tbody>
+                    @inject('buttonHelper','App\Services\TableButtonService')
                     @forelse($bookings as $booking)
                         <tr>
                             <td>{{$booking->name}}</td>
@@ -62,7 +65,9 @@
                             <td>{{$booking->phone}}</td>
                             <td>{{$booking->ticketType}}</td>
                             <td>{{$booking->seat_quantity}}</td>
-                            <td>{{$booking->token_id}}</td>
+                            <td>
+                                {!! $buttonHelper->viewButton($routePrefix.'bookings.show',$booking->token_id) !!}
+                            </td>
                         </tr>
                     @empty
                         <tr>

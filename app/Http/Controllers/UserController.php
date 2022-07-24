@@ -43,4 +43,16 @@ class UserController extends Controller
             'message' => 'SUCCESS',
         ], 200);
     }
+
+    public function update($id, Request $request): JsonResponse
+    {
+        $attributes = $request->except('_method', '_token');
+        $this->repository->update($id, $attributes);
+        $request->session()->flash('success', 'User updated successfully.');
+        return new JsonResponse([
+            'data' => [],
+            'status' => 200,
+            'message' => 'SUCCESS',
+        ], 201);
+    }
 }

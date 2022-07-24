@@ -11,8 +11,8 @@
 @section('content')
     @include('backend.users.modal')
     <div class="box box-default">
-        <div class="box-header">
-            <h3 class="box-title">Advanced Filter</h3>
+        <div class="box-header with-border">
+            <h3 class="box-title ">Advanced Filter</h3>
         </div>
         {!! Form::open(['route'=>$routePrefix.'users.index','method'=>'GET']) !!}
         <div class="box-body">
@@ -95,6 +95,7 @@
                         modal.find('#email').val(data.email);
                         modal.find('#name').val(data.name);
                         modal.find('#phone').val(data.phone);
+                        modal.find('#status').val(data.status);
                         modal.find('form').attr('action', url);
                         modal.find('form').append(method)
                     }, error: function (err) {

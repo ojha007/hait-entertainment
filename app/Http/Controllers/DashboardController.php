@@ -8,7 +8,16 @@ class DashboardController extends Controller
 
     public function index()
     {
-        return view('backend.dashboard');
+        $widgets = collect([
+            [
+
+                'title' => 'Total Organizer',
+                'count' => 100,
+                'icon' => 'ion ion-ios-people-outline',
+                'color' => 'bg-green'
+            ]
+        ]);
+        return view('backend.dashboard', compact('widgets'));
     }
 
 }

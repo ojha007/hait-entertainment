@@ -11,19 +11,23 @@
                 <div class="form-group">
                     {!! Form::label('name') !!}
                     {!! Form::text('name',null,['class'=>'form-control',
-                            'required','placeholder'=>'Enter Name','autocomplete'=>'off']) !!}
+                            'required','placeholder'=>'Enter Name','readonly'=>'readonly']) !!}
                 </div>
                 <div class="form-group">
                     {!! Form::label('email') !!}
                     {!! Form::text('email',null,['class'=>'form-control',
-                            'required','placeholder'=>'Enter Email','autocomplete'=>'off']) !!}
+                            'required','placeholder'=>'Enter Email','readonly'=>'readonly']) !!}
                 </div>
                 <div class="form-group">
                     {!! Form::label('phone') !!}
                     {!! Form::text('phone',null,['class'=>'form-control',
-                            'required','placeholder'=>'Enter phone number','autocomplete'=>'off']) !!}
+                            'required','placeholder'=>'Enter phone number','readonly'=>'readonly']) !!}
                 </div>
-
+                <div class="form-group">
+                    {!! Form::label('status') !!}
+                    {!! Form::select('status',['approved'=>'Approved','rejected'=>'Rejected','pending'=>'Pending'],null,
+                            ['class'=>'form-control','required','placeholder'=>'Select Status']) !!}
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="submit" class="btn btn-primary btn-flat pull-right">
